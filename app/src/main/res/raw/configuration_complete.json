@@ -1,0 +1,193 @@
+{
+  "logPath" : "askdemo",
+  "features" : {
+    "active" : true,
+    "logfile" : "dataset.csv"
+  },
+  "probes" : [
+    {
+      "name" : "AccelerometerProbe",
+      "interval" : 30,
+      "active" : true,
+      "logFile" : "accelerometer.csv"
+    },
+    {
+      "name" : "ActivityRecognitionProbe",
+      "logFile" : "activity.csv"
+    },
+    {
+      "name" : "AmbientTemperatureProbe",
+      "interval" : 30,
+      "active" : true,
+      "logFile" : "ambient_temperature.csv"
+    },
+    {
+      "name" : "AppsUsageProbe",
+      "interval" : 180,
+      "logFile" : "apps_usage.csv"
+    },
+    {
+      "name" : "AudioProbe",
+      "interval" : 60,
+      "logFile" : "audio.csv"
+    },
+
+    {
+      "name" : "BatteryProbe",
+      "interval" : 60,
+      "logFile" : "battery.csv"
+    },
+    {
+      "name" : "BluetoothConnProbe",
+      "logFile" : "bt_conn.csv"
+    },
+    {
+      "name" : "BluetoothScanProbe",
+      "interval" : 60,
+      "logFile" : "bt_scan.csv"
+    },
+    {
+      "name" : "BluetoothServiceDiscoveryProbe",
+      "interval" : 10,
+      "logFile" : "bluetooth_service_discovery.csv"
+    },
+    {
+      "name" : "CallsProbe",
+      "logFile" : "calls.csv"
+    },
+    {
+      "name" : "CellInfoProbe",
+      "interval" : 60,
+      "logFile" : "cells.csv"
+    },
+    {
+      "name" : "CurrentCalendarEventsProbe",
+      "interval" : 60,
+      "logFile" : "calendar_current_events.csv"
+    },
+    {
+      "name" : "DisplayProbe",
+      "logFile" : "display.csv"
+    },
+    {
+      "name" : "GameRotationVectorProbe",
+      "interval" : 30,
+      "active" : true,
+      "logFile" : "game_rotation_vector.csv"
+    },
+    {
+      "name" : "GeomagneticRotationVectorProbe",
+      "interval" : 30,
+      "active" : true,
+      "logFile" : "geomagnetic_rotation_vector.csv"
+    },
+    {
+      "name" : "GravityProbe",
+      "interval" : 30,
+      "active" : true,
+      "logFile" : "gravity.csv"
+    },
+    {
+      "name" : "GyroscopeProbe",
+      "interval" : 30,
+      "active" : true,
+      "logFile" : "gyroscope.csv"
+    },
+    {
+      "name" : "HardwareInfoProbe",
+      "logFile" : "hardware.csv",
+      "interval" : 240
+    },
+    {
+      "name" : "InstalledAppsProbe",
+      "interval" : 180,
+      "logFile" : "installed_apps.csv"
+    },
+    {
+      "name" : "LinearAccelerationProbe",
+      "interval" : 30,
+      "active" : true,
+      "logFile" : "linear_acceleration.csv"
+    },
+    {
+      "name" : "LocationProbe",
+      "interval" : 40,
+      "logFile" : "location.csv",
+      "logCategoriesInLogFile" : true,
+      "logCategoriesInFeatures" : true
+    },
+    {
+      "name" : "MagneticFieldProbe",
+      "interval" : 30,
+      "active" : true,
+      "logFile" : "magnetic_field.csv"
+    },
+    {
+      "name" : "MultimediaProbe",
+      "logFile": "multimedia.csv"
+    },
+    {
+      "name" : "OnEventLightProbe",
+      "logFile" : "on_event_light.csv"
+    },
+    {
+      "name" : "OnEventProximityProbe",
+      "logFile" : "on_event_proximity.csv"
+    },
+    {
+      "name" : "PressureProbe",
+      "interval" : 30,
+      "active" : true,
+      "logFile" : "pressure.csv"
+    },
+    {
+      "name" : "RelativeHumidityProbe",
+      "interval" : 30,
+      "active" : true,
+      "logFile" : "relative_humidity.csv"
+    },
+    {
+      "name" : "RotationVectorProbe",
+      "interval" : 30,
+      "active" : true,
+      "logFile" : "rotation_vector.csv"
+    },
+    {
+      "name" : "RunningApplicationsProbe",
+      "interval" : 180,
+      "logFile" : "running_apps.csv"
+    },
+    {
+      "name" : "SmsProbe",
+      "logFile" : "sms.csv"
+    },
+    {
+      "name" : "TimeInfosProbe",
+      "logFile" : "time_infos.csv",
+      "interval" : 60
+    },
+    {
+      "name" : "WeatherProbe",
+      "interval" : 30,
+      "unit" : 2,
+      "appId" : "84da1f0489af48796227b87443170b50",
+      "logFile" : "weather.csv"
+    },
+    {
+      "name" : "WiFiP2PProbe",
+      "interval" : 120,
+      "startDelay" : 120,
+      "logFile" : "wifi_p2p_scans.csv"
+    },
+    {
+      "name" : "WiFiP2PServiceDiscoveryProbe",
+      "interval" : 10,
+      "logFile" : "wifi_p2p_service_discovery_probe.csv"
+    },
+    {
+      "name" : "WiFiProbe",
+      "interval" : 180,
+      "logFile" : "wifi_scans.csv"
+    }
+  ]
+}

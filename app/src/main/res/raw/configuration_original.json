@@ -1,0 +1,186 @@
+{
+  "logPath" : "askdemo",
+  "features" : {
+    "active" : true,
+    "logfile" : "dataset.csv"
+  },
+  "probes" : [
+    {
+      "name" : "TimeInfosProbe",
+      "logFile" : "time_infos.csv",
+      "interval" : 60
+    },
+    {
+      "name" : "MultimediaProbe",
+      "logFile": "multimedia.csv"
+    },
+    {
+      "name" : "WeatherProbe",
+      "interval" : 3600,
+      "unit" : 2,
+      "appId" : "84da1f0489af48796227b87443170b50",
+      "logFile" : "weather.csv"
+    },
+    {
+      "name" : "ActivityRecognitionProbe",
+      "updateInterval" : 60,
+      "logFile" : "activity.csv"
+    },
+    {
+      "name" : "AudioProbe",
+      "interval" : 60,
+      "logFile" : "audio.csv"
+    },
+    {
+      "name" : "BatteryProbe",
+      "interval" : 60,
+      "logFile" : "battery.csv"
+    },
+    {
+      "name" : "BluetoothConnProbe",
+      "logFile" : "bt_conn.csv"
+    },
+    {
+      "name" : "BluetoothScanProbe",
+      "interval" : 60,
+      "logFile" : "bt_scan.csv"
+    },
+    {
+      "name" : "CallsProbe",
+      "logFile" : "calls.csv"
+    },
+    {
+      "name" : "CellInfoProbe",
+      "interval" : 60,
+      "logFile" : "cells.csv"
+    },
+    {
+      "name" : "CurrentCalendarEventsProbe",
+      "interval" : 60,
+      "logFile" : "calendar_current_events.csv"
+    },
+    {
+      "name" : "DisplayProbe",
+      "interval" : 60,
+      "logFile" : "display.csv"
+    },
+    {
+      "name" : "AmbientTemperatureProbe",
+      "interval" : 1,
+      "active" : true,
+      "logFile" : "ambient_temperature.csv"
+    },
+    {
+      "name" : "LightProbe",
+      "interval" : 1,
+      "active" : true,
+      "logFile" : "light.csv"
+    },
+    {
+      "name" : "PressureProbe",
+      "interval" : 1,
+      "active" : true,
+      "logFile" : "pressure.csv"
+    },
+    {
+      "name" : "RelativeHumidityProbe",
+      "interval" : 1,
+      "active" : true,
+      "logFile" : "relative_humidity.csv"
+    },
+    {
+      "name" : "AccelerometerProbe",
+      "interval" : 1,
+      "active" : true,
+      "logFile" : "accelerometer.csv"
+    },
+    {
+      "name" : "GravityProbe",
+      "interval" : 1,
+      "active" : true,
+      "logFile" : "gravity.csv"
+    },
+    {
+      "name" : "GyroscopeProbe",
+      "interval" : 1,
+      "active" : true,
+      "logFile" : "gyroscope.csv"
+    },
+    {
+      "name" : "LinearAccelerationProbe",
+      "interval" : 1,
+      "active" : true,
+      "logFile" : "linear_acceleration.csv"
+    },
+    {
+      "name" : "RotationVectorProbe",
+      "interval" : 1,
+      "active" : true,
+      "logFile" : "rotation_vector.csv"
+    },
+    {
+      "name" : "GameRotationVectorProbe",
+      "interval" : 1,
+      "active" : true,
+      "logFile" : "game_rotation_vector.csv"
+    },
+    {
+      "name" : "GeomagneticRotationVectorProbe",
+      "interval" : 1,
+      "active" : true,
+      "logFile" : "geomagnetic_rotation_vector.csv"
+    },
+    {
+      "name" : "MagneticFieldProbe",
+      "interval" : 1,
+      "active" : true,
+      "logFile" : "magnetic_field.csv"
+    },
+    {
+      "name" : "ProximityProbe",
+      "interval" : 1,
+      "active" : true,
+      "logFile" : "proximity.csv"
+    },
+    {
+      "name" : "InstalledAppsProbe",
+      "interval" : 180,
+      "logFile" : "installed_apps.csv"
+    },
+    {
+      "name" : "LocationProbe",
+      "interval" : 180,
+      "logFile" : "location.csv"
+    },
+    {
+      "name" : "RunningApplicationsProbe",
+      "interval" : 180,
+      "logFile" : "running_apps.csv"
+    },
+    {
+      "name" : "AppsUsageProbe",
+      "interval" : 180,
+      "logFile" : "apps_usage.csv"
+    },
+    {
+      "name" : "WiFiProbe",
+      "interval" : 180,
+      "logFile" : "wifi_scans.csv"
+    },
+    {
+      "name" : "WiFiP2PProbe",
+      "interval" : 120,
+      "startDelay" : 120,
+      "logFile" : "wifi_p2p_scans.csv"
+    },
+    {
+      "name" : "SmsProbe",
+      "logFile" : "sms.csv"
+    },
+    {
+      "name" : "HardwareInfoProbe",
+      "logFile" : "hardware.csv",
+      "interval" : 10
+    }
+  ]
+}

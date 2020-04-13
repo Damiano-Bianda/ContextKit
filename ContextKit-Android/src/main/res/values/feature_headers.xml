@@ -1,0 +1,1146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="features_common_headers">
+        <item>timestamp</item>
+    </string-array>
+
+    <!-- sensor name, sensor stat, dimension -->
+    <string-array name="physical_sensor_feature_headers">
+        <item>sensor_%s_%s_%s</item>
+    </string-array>
+
+    <!-- sensor name -->
+    <string-array name="on_event_physical_sensor_feature_headers">
+        <item>on_event_sensor_%s_%s_%s</item>
+    </string-array>
+
+    <string-array name="activity_recognition_feature_headers">
+        <item>activity_rec_in_vehicle</item>
+        <item>activity_rec_on_bicycle</item>
+        <item>activity_rec_on_foot</item>
+        <item>activity_rec_running</item>
+        <item>activity_rec_still</item>
+        <item>activity_rec_tilting</item>
+        <item>activity_rec_walking</item>
+        <item>activity_rec_unknown</item>
+    </string-array>
+
+    <string-array name="audio_feature_headers">
+        <item>audio_ringer_mode_silent</item>
+        <item>audio_ringer_mode_vibrate</item>
+        <item>audio_ringer_mode_normal</item>
+        <item>audio_alarm_volume</item>
+        <item>audio_music_volume</item>
+        <item>audio_notification_volume</item>
+        <item>audio_ring_volume</item>
+        <item>audio_bt_sco_on</item>
+        <item>audio_mic_mute</item>
+        <item>audio_music_active</item>
+        <item>audio_speaker_on</item>
+        <item>audio_headset_on</item>
+    </string-array>
+
+    <string-array name="battery_feature_headers">
+        <item>battery_unplugged</item>
+        <item>battery_plugged_ac</item>
+        <item>battery_plugged_usb</item>
+        <item>battery_plugged_wireless</item>
+    </string-array>
+
+    <!-- Warning: this tag generates more headers than those that are represented here, based on
+    number of devices specified in BluetoothConnProbe and BluetoothScanProbe.
+    Keywords probe, #devices and bt class are substitued at runtime by ... classes -->
+    <string-array name="bluetooth_feature_headers">
+        <item>bt_%s_%s_%s</item>
+    </string-array>
+
+    <string-array name="display_feature_headers">
+        <item>display_status_unknown</item>
+        <item>display_status_off</item>
+        <item>display_status_on</item>
+        <item>display_status_doze</item>
+        <item>display_status_doze_suspended</item>
+        <item>display_rotation_0</item>
+        <item>display_rotation_90</item>
+        <item>display_rotation_180</item>
+        <item>display_rotation_270</item>
+    </string-array>
+
+    <string-array name="location_feature_headers">
+        <item>location_latitude</item>
+        <item>location_longitude</item>
+        <item>location_altitude</item>
+        <item>location_bearing</item>
+        <item>location_speed</item>
+        <item>location_accuracy</item>
+        <item>location_time</item>
+    </string-array>
+
+    <string-array name="location_categories_feature_headers">
+        <item>Arts &amp; Entertainment</item>
+        <item>Amphitheater</item>
+        <item>Aquarium</item>
+        <item>Arcade</item>
+        <item>Art Gallery</item>
+        <item>Bowling Alley</item>
+        <item>Casino</item>
+        <item>Circus</item>
+        <item>Comedy Club</item>
+        <item>Concert Hall</item>
+        <item>Country Dance Club</item>
+        <item>Disc Golf</item>
+        <item>Exhibit</item>
+        <item>General Entertainment</item>
+        <item>Go Kart Track</item>
+        <item>Historic Site</item>
+        <item>Karaoke Box</item>
+        <item>Laser Tag</item>
+        <item>Memorial Site</item>
+        <item>Mini Golf</item>
+        <item>Movie Theater</item>
+        <item>Drive-in Theater</item>
+        <item>Indie Movie Theater</item>
+        <item>Multiplex</item>
+        <item>Museum</item>
+        <item>Art Museum</item>
+        <item>Erotic Museum</item>
+        <item>History Museum</item>
+        <item>Planetarium</item>
+        <item>Science Museum</item>
+        <item>Music Venue</item>
+        <item>Jazz Club</item>
+        <item>Piano Bar</item>
+        <item>Rock Club</item>
+        <item>Pachinko Parlor</item>
+        <item>Performing Arts Venue</item>
+        <item>Dance Studio</item>
+        <item>Indie Theater</item>
+        <item>Opera House</item>
+        <item>Theater</item>
+        <item>Pool Hall</item>
+        <item>Public Art</item>
+        <item>Outdoor Sculpture</item>
+        <item>Street Art</item>
+        <item>Racecourse</item>
+        <item>Racetrack</item>
+        <item>Roller Rink</item>
+        <item>Salsa Club</item>
+        <item>Samba School</item>
+        <item>Stadium</item>
+        <item>Baseball Stadium</item>
+        <item>Basketball Stadium</item>
+        <item>Cricket Ground</item>
+        <item>Football Stadium</item>
+        <item>Hockey Arena</item>
+        <item>Rugby Stadium</item>
+        <item>Soccer Stadium</item>
+        <item>Tennis Stadium</item>
+        <item>Track Stadium</item>
+        <item>Theme Park</item>
+        <item>Theme Park Ride / Attraction</item>
+        <item>Tour Provider</item>
+        <item>Water Park</item>
+        <item>Zoo</item>
+        <item>Zoo Exhibit</item>
+        <item>College &amp; University</item>
+        <item>College Academic Building</item>
+        <item>College Arts Building</item>
+        <item>College Communications Building</item>
+        <item>College Engineering Building</item>
+        <item>College History Building</item>
+        <item>College Math Building</item>
+        <item>College Science Building</item>
+        <item>College Technology Building</item>
+        <item>College Administrative Building</item>
+        <item>College Auditorium</item>
+        <item>College Bookstore</item>
+        <item>College Cafeteria</item>
+        <item>College Classroom</item>
+        <item>College Gym</item>
+        <item>College Lab</item>
+        <item>College Library</item>
+        <item>College Quad</item>
+        <item>College Rec Center</item>
+        <item>College Residence Hall</item>
+        <item>College Stadium</item>
+        <item>College Baseball Diamond</item>
+        <item>College Basketball Court</item>
+        <item>College Cricket Pitch</item>
+        <item>College Football Field</item>
+        <item>College Hockey Rink</item>
+        <item>College Soccer Field</item>
+        <item>College Tennis Court</item>
+        <item>College Track</item>
+        <item>College Theater</item>
+        <item>Community College</item>
+        <item>Fraternity House</item>
+        <item>General College &amp; University</item>
+        <item>Law School</item>
+        <item>Medical School</item>
+        <item>Sorority House</item>
+        <item>Student Center</item>
+        <item>Trade School</item>
+        <item>University</item>
+        <item>Event</item>
+        <item>Christmas Market</item>
+        <item>Conference</item>
+        <item>Convention</item>
+        <item>Festival</item>
+        <item>Line / Queue</item>
+        <item>Music Festival</item>
+        <item>Other Event</item>
+        <item>Parade</item>
+        <item>Stoop Sale</item>
+        <item>Street Fair</item>
+        <item>Food</item>
+        <item>Afghan Restaurant</item>
+        <item>African Restaurant</item>
+        <item>Ethiopian Restaurant</item>
+        <item>American Restaurant</item>
+        <item>New American Restaurant</item>
+        <item>Asian Restaurant</item>
+        <item>Burmese Restaurant</item>
+        <item>Cambodian Restaurant</item>
+        <item>Chinese Restaurant</item>
+        <item>Anhui Restaurant</item>
+        <item>Beijing Restaurant</item>
+        <item>Cantonese Restaurant</item>
+        <item>Cha Chaan Teng</item>
+        <item>Chinese Aristocrat Restaurant</item>
+        <item>Chinese Breakfast Place</item>
+        <item>Dim Sum Restaurant</item>
+        <item>Dongbei Restaurant</item>
+        <item>Fujian Restaurant</item>
+        <item>Guizhou Restaurant</item>
+        <item>Hainan Restaurant</item>
+        <item>Hakka Restaurant</item>
+        <item>Henan Restaurant</item>
+        <item>Hong Kong Restaurant</item>
+        <item>Huaiyang Restaurant</item>
+        <item>Hubei Restaurant</item>
+        <item>Hunan Restaurant</item>
+        <item>Imperial Restaurant</item>
+        <item>Jiangsu Restaurant</item>
+        <item>Jiangxi Restaurant</item>
+        <item>Macanese Restaurant</item>
+        <item>Manchu Restaurant</item>
+        <item>Peking Duck Restaurant</item>
+        <item>Shaanxi Restaurant</item>
+        <item>Shandong Restaurant</item>
+        <item>Shanghai Restaurant</item>
+        <item>Shanxi Restaurant</item>
+        <item>Szechuan Restaurant</item>
+        <item>Taiwanese Restaurant</item>
+        <item>Tianjin Restaurant</item>
+        <item>Xinjiang Restaurant</item>
+        <item>Yunnan Restaurant</item>
+        <item>Zhejiang Restaurant</item>
+        <item>Filipino Restaurant</item>
+        <item>Himalayan Restaurant</item>
+        <item>Hotpot Restaurant</item>
+        <item>Indonesian Restaurant</item>
+        <item>Acehnese Restaurant</item>
+        <item>Balinese Restaurant</item>
+        <item>Betawinese Restaurant</item>
+        <item>Indonesian Meatball Place</item>
+        <item>Javanese Restaurant</item>
+        <item>Manadonese Restaurant</item>
+        <item>Padangnese Restaurant</item>
+        <item>Sundanese Restaurant</item>
+        <item>Japanese Restaurant</item>
+        <item>Donburi Restaurant</item>
+        <item>Japanese Curry Restaurant</item>
+        <item>Kaiseki Restaurant</item>
+        <item>Kushikatsu Restaurant</item>
+        <item>Monjayaki Restaurant</item>
+        <item>Nabe Restaurant</item>
+        <item>Okonomiyaki Restaurant</item>
+        <item>Ramen Restaurant</item>
+        <item>Shabu-Shabu Restaurant</item>
+        <item>Soba Restaurant</item>
+        <item>Sukiyaki Restaurant</item>
+        <item>Sushi Restaurant</item>
+        <item>Takoyaki Place</item>
+        <item>Tempura Restaurant</item>
+        <item>Tonkatsu Restaurant</item>
+        <item>Udon Restaurant</item>
+        <item>Unagi Restaurant</item>
+        <item>Wagashi Place</item>
+        <item>Yakitori Restaurant</item>
+        <item>Yoshoku Restaurant</item>
+        <item>Korean Restaurant</item>
+        <item>Bossam/Jokbal Restaurant</item>
+        <item>Bunsik Restaurant</item>
+        <item>Gukbap Restaurant</item>
+        <item>Janguh Restaurant</item>
+        <item>Samgyetang Restaurant</item>
+        <item>Malay Restaurant</item>
+        <item>Mongolian Restaurant</item>
+        <item>Noodle House</item>
+        <item>Satay Restaurant</item>
+        <item>Thai Restaurant</item>
+        <item>Som Tum Restaurant</item>
+        <item>Tibetan Restaurant</item>
+        <item>Vietnamese Restaurant</item>
+        <item>Australian Restaurant</item>
+        <item>Austrian Restaurant</item>
+        <item>BBQ Joint</item>
+        <item>Bagel Shop</item>
+        <item>Bakery</item>
+        <item>Belgian Restaurant</item>
+        <item>Bistro</item>
+        <item>Breakfast Spot</item>
+        <item>Bubble Tea Shop</item>
+        <item>Buffet</item>
+        <item>Burger Joint</item>
+        <item>Cafeteria</item>
+        <item>Café</item>
+        <item>Cajun / Creole Restaurant</item>
+        <item>Caribbean Restaurant</item>
+        <item>Cuban Restaurant</item>
+        <item>Caucasian Restaurant</item>
+        <item>Coffee Shop</item>
+        <item>Comfort Food Restaurant</item>
+        <item>Creperie</item>
+        <item>Czech Restaurant</item>
+        <item>Deli / Bodega</item>
+        <item>Dessert Shop</item>
+        <item>Cupcake Shop</item>
+        <item>Frozen Yogurt Shop</item>
+        <item>Ice Cream Shop</item>
+        <item>Pastry Shop</item>
+        <item>Pie Shop</item>
+        <item>Diner</item>
+        <item>Donut Shop</item>
+        <item>Dumpling Restaurant</item>
+        <item>Dutch Restaurant</item>
+        <item>Eastern European Restaurant</item>
+        <item>Belarusian Restaurant</item>
+        <item>Bosnian Restaurant</item>
+        <item>Bulgarian Restaurant</item>
+        <item>Romanian Restaurant</item>
+        <item>Tatar Restaurant</item>
+        <item>English Restaurant</item>
+        <item>Falafel Restaurant</item>
+        <item>Fast Food Restaurant</item>
+        <item>Fish &amp; Chips Shop</item>
+        <item>Fondue Restaurant</item>
+        <item>Food Court</item>
+        <item>Food Stand</item>
+        <item>Food Truck</item>
+        <item>French Restaurant</item>
+        <item>Alsatian Restaurant</item>
+        <item>Auvergne Restaurant</item>
+        <item>Basque Restaurant</item>
+        <item>Brasserie</item>
+        <item>Breton Restaurant</item>
+        <item>Burgundian Restaurant</item>
+        <item>Catalan Restaurant</item>
+        <item>Ch\'ti Restaurant</item>
+        <item>Corsican Restaurant</item>
+        <item>Estaminet</item>
+        <item>Labour Canteen</item>
+        <item>Lyonese Bouchon</item>
+        <item>Norman Restaurant</item>
+        <item>Provençal Restaurant</item>
+        <item>Savoyard Restaurant</item>
+        <item>Southwestern French Restaurant</item>
+        <item>Fried Chicken Joint</item>
+        <item>Friterie</item>
+        <item>Gastropub</item>
+        <item>German Restaurant</item>
+        <item>Apple Wine Pub</item>
+        <item>Bavarian Restaurant</item>
+        <item>Bratwurst Joint</item>
+        <item>Currywurst Joint</item>
+        <item>Franconian Restaurant</item>
+        <item>German Pop-Up Restaurant</item>
+        <item>Palatine Restaurant</item>
+        <item>Rhenisch Restaurant</item>
+        <item>Schnitzel Restaurant</item>
+        <item>Silesian Restaurant</item>
+        <item>Swabian Restaurant</item>
+        <item>Gluten-free Restaurant</item>
+        <item>Greek Restaurant</item>
+        <item>Bougatsa Shop</item>
+        <item>Cretan Restaurant</item>
+        <item>Fish Taverna</item>
+        <item>Grilled Meat Restaurant</item>
+        <item>Kafenio</item>
+        <item>Magirio</item>
+        <item>Meze Restaurant</item>
+        <item>Modern Greek Restaurant</item>
+        <item>Ouzeri</item>
+        <item>Patsa Restaurant</item>
+        <item>Souvlaki Shop</item>
+        <item>Taverna</item>
+        <item>Tsipouro Restaurant</item>
+        <item>Halal Restaurant</item>
+        <item>Hawaiian Restaurant</item>
+        <item>Hot Dog Joint</item>
+        <item>Hungarian Restaurant</item>
+        <item>Indian Restaurant</item>
+        <item>Andhra Restaurant</item>
+        <item>Awadhi Restaurant</item>
+        <item>Bengali Restaurant</item>
+        <item>Chaat Place</item>
+        <item>Chettinad Restaurant</item>
+        <item>Dhaba</item>
+        <item>Dosa Place</item>
+        <item>Goan Restaurant</item>
+        <item>Gujarati Restaurant</item>
+        <item>Hyderabadi Restaurant</item>
+        <item>Indian Chinese Restaurant</item>
+        <item>Indian Sweet Shop</item>
+        <item>Irani Cafe</item>
+        <item>Jain Restaurant</item>
+        <item>Karnataka Restaurant</item>
+        <item>Kerala Restaurant</item>
+        <item>Maharashtrian Restaurant</item>
+        <item>Mughlai Restaurant</item>
+        <item>Multicuisine Indian Restaurant</item>
+        <item>North Indian Restaurant</item>
+        <item>Northeast Indian Restaurant</item>
+        <item>Parsi Restaurant</item>
+        <item>Punjabi Restaurant</item>
+        <item>Rajasthani Restaurant</item>
+        <item>South Indian Restaurant</item>
+        <item>Udupi Restaurant</item>
+        <item>Irish Pub</item>
+        <item>Italian Restaurant</item>
+        <item>Abruzzo Restaurant</item>
+        <item>Agriturismo</item>
+        <item>Aosta Restaurant</item>
+        <item>Basilicata Restaurant</item>
+        <item>Calabria Restaurant</item>
+        <item>Campanian Restaurant</item>
+        <item>Emilia Restaurant</item>
+        <item>Friuli Restaurant</item>
+        <item>Ligurian Restaurant</item>
+        <item>Lombard Restaurant</item>
+        <item>Malga</item>
+        <item>Marche Restaurant</item>
+        <item>Molise Restaurant</item>
+        <item>Piadineria</item>
+        <item>Piedmontese Restaurant</item>
+        <item>Puglia Restaurant</item>
+        <item>Romagna Restaurant</item>
+        <item>Roman Restaurant</item>
+        <item>Sardinian Restaurant</item>
+        <item>Sicilian Restaurant</item>
+        <item>South Tyrolean Restaurant</item>
+        <item>Trattoria/Osteria</item>
+        <item>Trentino Restaurant</item>
+        <item>Tuscan Restaurant</item>
+        <item>Umbrian Restaurant</item>
+        <item>Veneto Restaurant</item>
+        <item>Jewish Restaurant</item>
+        <item>Kosher Restaurant</item>
+        <item>Juice Bar</item>
+        <item>Kebab Restaurant</item>
+        <item>Latin American Restaurant</item>
+        <item>Arepa Restaurant</item>
+        <item>Empanada Restaurant</item>
+        <item>Salvadoran Restaurant</item>
+        <item>South American Restaurant</item>
+        <item>Argentinian Restaurant</item>
+        <item>Brazilian Restaurant</item>
+        <item>Acai House</item>
+        <item>Baiano Restaurant</item>
+        <item>Central Brazilian Restaurant</item>
+        <item>Churrascaria</item>
+        <item>Empada House</item>
+        <item>Goiano Restaurant</item>
+        <item>Mineiro Restaurant</item>
+        <item>Northeastern Brazilian Restaurant</item>
+        <item>Northern Brazilian Restaurant</item>
+        <item>Pastelaria</item>
+        <item>Southeastern Brazilian Restaurant</item>
+        <item>Southern Brazilian Restaurant</item>
+        <item>Tapiocaria</item>
+        <item>Colombian Restaurant</item>
+        <item>Peruvian Restaurant</item>
+        <item>Venezuelan Restaurant</item>
+        <item>Mac &amp; Cheese Joint</item>
+        <item>Mediterranean Restaurant</item>
+        <item>Moroccan Restaurant</item>
+        <item>Mexican Restaurant</item>
+        <item>Botanero</item>
+        <item>Burrito Place</item>
+        <item>Taco Place</item>
+        <item>Tex-Mex Restaurant</item>
+        <item>Yucatecan Restaurant</item>
+        <item>Middle Eastern Restaurant</item>
+        <item>Israeli Restaurant</item>
+        <item>Kurdish Restaurant</item>
+        <item>Lebanese Restaurant</item>
+        <item>Persian Restaurant</item>
+        <item>Ash and Haleem Place</item>
+        <item>Dizi Place</item>
+        <item>Gilaki Restaurant</item>
+        <item>Jegaraki</item>
+        <item>Tabbakhi</item>
+        <item>Modern European Restaurant</item>
+        <item>Molecular Gastronomy Restaurant</item>
+        <item>Pakistani Restaurant</item>
+        <item>Pet Café</item>
+        <item>Pizza Place</item>
+        <item>Polish Restaurant</item>
+        <item>Portuguese Restaurant</item>
+        <item>Poutine Place</item>
+        <item>Restaurant</item>
+        <item>Russian Restaurant</item>
+        <item>Blini House</item>
+        <item>Pelmeni House</item>
+        <item>Salad Place</item>
+        <item>Sandwich Place</item>
+        <item>Scandinavian Restaurant</item>
+        <item>Scottish Restaurant</item>
+        <item>Seafood Restaurant</item>
+        <item>Slovak Restaurant</item>
+        <item>Snack Place</item>
+        <item>Soup Place</item>
+        <item>Southern / Soul Food Restaurant</item>
+        <item>Spanish Restaurant</item>
+        <item>Paella Restaurant</item>
+        <item>Tapas Restaurant</item>
+        <item>Sri Lankan Restaurant</item>
+        <item>Steakhouse</item>
+        <item>Swiss Restaurant</item>
+        <item>Tea Room</item>
+        <item>Theme Restaurant</item>
+        <item>Truck Stop</item>
+        <item>Turkish Restaurant</item>
+        <item>Borek Place</item>
+        <item>Cigkofte Place</item>
+        <item>Doner Restaurant</item>
+        <item>Gozleme Place</item>
+        <item>Kofte Place</item>
+        <item>Kokoreç Restaurant</item>
+        <item>Kumpir Restaurant</item>
+        <item>Kumru Restaurant</item>
+        <item>Manti Place</item>
+        <item>Meyhane</item>
+        <item>Pide Place</item>
+        <item>Pilavcı</item>
+        <item>Söğüş Place</item>
+        <item>Tantuni Restaurant</item>
+        <item>Turkish Coffeehouse</item>
+        <item>Turkish Home Cooking Restaurant</item>
+        <item>Çöp Şiş Place</item>
+        <item>Ukrainian Restaurant</item>
+        <item>Varenyky restaurant</item>
+        <item>West-Ukrainian Restaurant</item>
+        <item>Vegetarian / Vegan Restaurant</item>
+        <item>Wings Joint</item>
+        <item>Nightlife Spot</item>
+        <item>Bar</item>
+        <item>Beach Bar</item>
+        <item>Beer Bar</item>
+        <item>Beer Garden</item>
+        <item>Champagne Bar</item>
+        <item>Cocktail Bar</item>
+        <item>Dive Bar</item>
+        <item>Gay Bar</item>
+        <item>Hookah Bar</item>
+        <item>Hotel Bar</item>
+        <item>Karaoke Bar</item>
+        <item>Pub</item>
+        <item>Sake Bar</item>
+        <item>Speakeasy</item>
+        <item>Sports Bar</item>
+        <item>Tiki Bar</item>
+        <item>Whisky Bar</item>
+        <item>Wine Bar</item>
+        <item>Brewery</item>
+        <item>Lounge</item>
+        <item>Night Market</item>
+        <item>Nightclub</item>
+        <item>Other Nightlife</item>
+        <item>Strip Club</item>
+        <item>Outdoors &amp; Recreation</item>
+        <item>Athletics &amp; Sports</item>
+        <item>Badminton Court</item>
+        <item>Baseball Field</item>
+        <item>Basketball Court</item>
+        <item>Bowling Green</item>
+        <item>Curling Ice</item>
+        <item>Golf Course</item>
+        <item>Golf Driving Range</item>
+        <item>Gym / Fitness Center</item>
+        <item>Boxing Gym</item>
+        <item>Climbing Gym</item>
+        <item>Cycle Studio</item>
+        <item>Gym Pool</item>
+        <item>Gymnastics Gym</item>
+        <item>Gym</item>
+        <item>Martial Arts Dojo</item>
+        <item>Outdoor Gym</item>
+        <item>Pilates Studio</item>
+        <item>Track</item>
+        <item>Weight Loss Center</item>
+        <item>Yoga Studio</item>
+        <item>Hockey Field</item>
+        <item>Hockey Rink</item>
+        <item>Paintball Field</item>
+        <item>Rugby Pitch</item>
+        <item>Skate Park</item>
+        <item>Skating Rink</item>
+        <item>Soccer Field</item>
+        <item>Sports Club</item>
+        <item>Squash Court</item>
+        <item>Tennis Court</item>
+        <item>Volleyball Court</item>
+        <item>Bathing Area</item>
+        <item>Bay</item>
+        <item>Beach</item>
+        <item>Nudist Beach</item>
+        <item>Surf Spot</item>
+        <item>Bike Trail</item>
+        <item>Botanical Garden</item>
+        <item>Bridge</item>
+        <item>Campground</item>
+        <item>Canal Lock</item>
+        <item>Canal</item>
+        <item>Castle</item>
+        <item>Cave</item>
+        <item>Cemetery</item>
+        <item>Dive Spot</item>
+        <item>Dog Run</item>
+        <item>Farm</item>
+        <item>Field</item>
+        <item>Fishing Spot</item>
+        <item>Forest</item>
+        <item>Fountain</item>
+        <item>Garden</item>
+        <item>Gun Range</item>
+        <item>Harbor / Marina</item>
+        <item>Hot Spring</item>
+        <item>Indoor Play Area</item>
+        <item>Island</item>
+        <item>Lake</item>
+        <item>Lighthouse</item>
+        <item>Mountain Hut</item>
+        <item>Mountain</item>
+        <item>National Park</item>
+        <item>Nature Preserve</item>
+        <item>Other Great Outdoors</item>
+        <item>Palace</item>
+        <item>Park</item>
+        <item>Pedestrian Plaza</item>
+        <item>Playground</item>
+        <item>Plaza</item>
+        <item>Pool</item>
+        <item>Rafting</item>
+        <item>Recreation Center</item>
+        <item>Reservoir</item>
+        <item>River</item>
+        <item>Rock Climbing Spot</item>
+        <item>Scenic Lookout</item>
+        <item>Sculpture Garden</item>
+        <item>Ski Area</item>
+        <item>Apres Ski Bar</item>
+        <item>Ski Chairlift</item>
+        <item>Ski Chalet</item>
+        <item>Ski Lodge</item>
+        <item>Ski Trail</item>
+        <item>Skydiving Drop Zone</item>
+        <item>Stables</item>
+        <item>States &amp; Municipalities</item>
+        <item>City</item>
+        <item>County</item>
+        <item>Country</item>
+        <item>Neighborhood</item>
+        <item>State</item>
+        <item>Town</item>
+        <item>Village</item>
+        <item>Summer Camp</item>
+        <item>Trail</item>
+        <item>Tree</item>
+        <item>Vineyard</item>
+        <item>Volcano</item>
+        <item>Waterfall</item>
+        <item>Waterfront</item>
+        <item>Well</item>
+        <item>Professional &amp; Other Places</item>
+        <item>Animal Shelter</item>
+        <item>Art Studio</item>
+        <item>Auditorium</item>
+        <item>Ballroom</item>
+        <item>Building</item>
+        <item>Business Center</item>
+        <item>Club House</item>
+        <item>Community Center</item>
+        <item>Convention Center</item>
+        <item>Meeting Room</item>
+        <item>Cultural Center</item>
+        <item>Distillery</item>
+        <item>Distribution Center</item>
+        <item>Event Space</item>
+        <item>Outdoor Event Space</item>
+        <item>Factory</item>
+        <item>Fair</item>
+        <item>Funeral Home</item>
+        <item>Government Building</item>
+        <item>Capitol Building</item>
+        <item>City Hall</item>
+        <item>Courthouse</item>
+        <item>Embassy / Consulate</item>
+        <item>Fire Station</item>
+        <item>Monument / Landmark</item>
+        <item>Police Station</item>
+        <item>Town Hall</item>
+        <item>Industrial Estate</item>
+        <item>Laboratory</item>
+        <item>Library</item>
+        <item>Medical Center</item>
+        <item>Acupuncturist</item>
+        <item>Alternative Healer</item>
+        <item>Chiropractor</item>
+        <item>Dentist\'s Office</item>
+        <item>Doctor\'s Office</item>
+        <item>Emergency Room</item>
+        <item>Eye Doctor</item>
+        <item>Hospital</item>
+        <item>Hospital Ward</item>
+        <item>Maternity Clinic</item>
+        <item>Medical Lab</item>
+        <item>Mental Health Office</item>
+        <item>Nutritionist</item>
+        <item>Physical Therapist</item>
+        <item>Rehab Center</item>
+        <item>Urgent Care Center</item>
+        <item>Veterinarian</item>
+        <item>Military Base</item>
+        <item>Non-Profit</item>
+        <item>Observatory</item>
+        <item>Office</item>
+        <item>Advertising Agency</item>
+        <item>Campaign Office</item>
+        <item>Conference Room</item>
+        <item>Corporate Amenity</item>
+        <item>Corporate Cafeteria</item>
+        <item>Corporate Coffee Shop</item>
+        <item>Coworking Space</item>
+        <item>Tech Startup</item>
+        <item>Parking</item>
+        <item>Post Office</item>
+        <item>Power Plant</item>
+        <item>Prison</item>
+        <item>Radio Station</item>
+        <item>Recruiting Agency</item>
+        <item>Research Station</item>
+        <item>School</item>
+        <item>Adult Education Center</item>
+        <item>Circus School</item>
+        <item>Cooking School</item>
+        <item>Driving School</item>
+        <item>Elementary School</item>
+        <item>Flight School</item>
+        <item>High School</item>
+        <item>Language School</item>
+        <item>Middle School</item>
+        <item>Music School</item>
+        <item>Nursery School</item>
+        <item>Preschool</item>
+        <item>Private School</item>
+        <item>Religious School</item>
+        <item>Swim School</item>
+        <item>Social Club</item>
+        <item>Spiritual Center</item>
+        <item>Buddhist Temple</item>
+        <item>Cemevi</item>
+        <item>Church</item>
+        <item>Confucian Temple</item>
+        <item>Hindu Temple</item>
+        <item>Kingdom Hall</item>
+        <item>Monastery</item>
+        <item>Mosque</item>
+        <item>Prayer Room</item>
+        <item>Shrine</item>
+        <item>Synagogue</item>
+        <item>Temple</item>
+        <item>Terreiro</item>
+        <item>TV Station</item>
+        <item>Voting Booth</item>
+        <item>Warehouse</item>
+        <item>Waste Facility</item>
+        <item>Wedding Hall</item>
+        <item>Winery</item>
+        <item>Residence</item>
+        <item>Assisted Living</item>
+        <item>Home (private)</item>
+        <item>Housing Development</item>
+        <item>Residential Building (Apartment / Condo)</item>
+        <item>Trailer Park</item>
+        <item>Shop &amp; Service</item>
+        <item>ATM</item>
+        <item>Adult Boutique</item>
+        <item>Antique Shop</item>
+        <item>Arts &amp; Crafts Store</item>
+        <item>Astrologer</item>
+        <item>Auto Dealership</item>
+        <item>Auto Garage</item>
+        <item>Auto Workshop</item>
+        <item>Automotive Shop</item>
+        <item>Baby Store</item>
+        <item>Bank</item>
+        <item>Bath House</item>
+        <item>Batik Shop</item>
+        <item>Betting Shop</item>
+        <item>Big Box Store</item>
+        <item>Bike Shop</item>
+        <item>Board Shop</item>
+        <item>Bookstore</item>
+        <item>Bridal Shop</item>
+        <item>Business Service</item>
+        <item>Camera Store</item>
+        <item>Candy Store</item>
+        <item>Car Wash</item>
+        <item>Carpet Store</item>
+        <item>Check Cashing Service</item>
+        <item>Child Care Service</item>
+        <item>Daycare</item>
+        <item>Chocolate Shop</item>
+        <item>Clothing Store</item>
+        <item>Accessories Store</item>
+        <item>Boutique</item>
+        <item>Kids Store</item>
+        <item>Lingerie Store</item>
+        <item>Men\'s Store</item>
+        <item>Shoe Store</item>
+        <item>Women\'s Store</item>
+        <item>Comic Shop</item>
+        <item>Construction &amp; Landscaping</item>
+        <item>Convenience Store</item>
+        <item>Cosmetics Shop</item>
+        <item>Costume Shop</item>
+        <item>Credit Union</item>
+        <item>Currency Exchange</item>
+        <item>Department Store</item>
+        <item>Design Studio</item>
+        <item>Discount Store</item>
+        <item>Dive Shop</item>
+        <item>Drugstore</item>
+        <item>Dry Cleaner</item>
+        <item>EV Charging Station</item>
+        <item>Electronics Store</item>
+        <item>Entertainment Service</item>
+        <item>Event Service</item>
+        <item>Fabric Shop</item>
+        <item>Film Studio</item>
+        <item>Financial or Legal Service</item>
+        <item>Fireworks Store</item>
+        <item>Fishing Store</item>
+        <item>Flea Market</item>
+        <item>Floating Market</item>
+        <item>Flower Shop</item>
+        <item>Food &amp; Drink Shop</item>
+        <item>Beer Store</item>
+        <item>Butcher</item>
+        <item>Cheese Shop</item>
+        <item>Dairy Store</item>
+        <item>Farmers Market</item>
+        <item>Fish Market</item>
+        <item>Food Service</item>
+        <item>Gourmet Shop</item>
+        <item>Grocery Store</item>
+        <item>Health Food Store</item>
+        <item>Kuruyemişçi</item>
+        <item>Liquor Store</item>
+        <item>Organic Grocery</item>
+        <item>Sausage Shop</item>
+        <item>Street Food Gathering</item>
+        <item>Supermarket</item>
+        <item>Turşucu</item>
+        <item>Wine Shop</item>
+        <item>Frame Store</item>
+        <item>Fruit &amp; Vegetable Store</item>
+        <item>Furniture / Home Store</item>
+        <item>Lighting Store</item>
+        <item>Gaming Cafe</item>
+        <item>Garden Center</item>
+        <item>Gas Station</item>
+        <item>Gift Shop</item>
+        <item>Gun Shop</item>
+        <item>Hardware Store</item>
+        <item>Health &amp; Beauty Service</item>
+        <item>Herbs &amp; Spices Store</item>
+        <item>Hobby Shop</item>
+        <item>Home Service</item>
+        <item>Hunting Supply</item>
+        <item>IT Services</item>
+        <item>Insurance Office</item>
+        <item>Internet Cafe</item>
+        <item>Jewelry Store</item>
+        <item>Kitchen Supply Store</item>
+        <item>Knitting Store</item>
+        <item>Laundromat</item>
+        <item>Laundry Service</item>
+        <item>Lawyer</item>
+        <item>Leather Goods Store</item>
+        <item>Locksmith</item>
+        <item>Lottery Retailer</item>
+        <item>Luggage Store</item>
+        <item>Marijuana Dispensary</item>
+        <item>Market</item>
+        <item>Massage Studio</item>
+        <item>Mattress Store</item>
+        <item>Medical Supply Store</item>
+        <item>Miscellaneous Shop</item>
+        <item>Mobile Phone Shop</item>
+        <item>Mobility Store</item>
+        <item>Motorcycle Shop</item>
+        <item>Motorsports Shop</item>
+        <item>Music Store</item>
+        <item>Nail Salon</item>
+        <item>Newsstand</item>
+        <item>Optical Shop</item>
+        <item>Other Repair Shop</item>
+        <item>Outdoor Supply Store</item>
+        <item>Outlet Mall</item>
+        <item>Outlet Store</item>
+        <item>Paper / Office Supplies Store</item>
+        <item>Pawn Shop</item>
+        <item>Perfume Shop</item>
+        <item>Pet Service</item>
+        <item>Pet Store</item>
+        <item>Pharmacy</item>
+        <item>Photography Lab</item>
+        <item>Photography Studio</item>
+        <item>Piercing Parlor</item>
+        <item>Pop-Up Shop</item>
+        <item>Print Shop</item>
+        <item>Public Bathroom</item>
+        <item>Real Estate Office</item>
+        <item>Record Shop</item>
+        <item>Recording Studio</item>
+        <item>Recycling Facility</item>
+        <item>Rental Service</item>
+        <item>Salon / Barbershop</item>
+        <item>Sauna / Steam Room</item>
+        <item>Shipping Store</item>
+        <item>Shoe Repair</item>
+        <item>Shopping Mall</item>
+        <item>Shopping Plaza</item>
+        <item>Ski Shop</item>
+        <item>Smoke Shop</item>
+        <item>Smoothie Shop</item>
+        <item>Souvenir Shop</item>
+        <item>Spa</item>
+        <item>Sporting Goods Shop</item>
+        <item>Stationery Store</item>
+        <item>Storage Facility</item>
+        <item>Supplement Shop</item>
+        <item>Tailor Shop</item>
+        <item>Tanning Salon</item>
+        <item>Tattoo Parlor</item>
+        <item>Thrift / Vintage Store</item>
+        <item>Toy / Game Store</item>
+        <item>Travel Agency</item>
+        <item>Used Bookstore</item>
+        <item>Vape Store</item>
+        <item>Video Game Store</item>
+        <item>Video Store</item>
+        <item>Warehouse Store</item>
+        <item>Watch Shop</item>
+        <item>Travel &amp; Transport</item>
+        <item>Airport</item>
+        <item>Airport Food Court</item>
+        <item>Airport Gate</item>
+        <item>Airport Lounge</item>
+        <item>Airport Service</item>
+        <item>Airport Terminal</item>
+        <item>Airport Tram</item>
+        <item>Baggage Claim</item>
+        <item>Plane</item>
+        <item>Baggage Locker</item>
+        <item>Bike Rental / Bike Share</item>
+        <item>Boat Rental</item>
+        <item>Boat or Ferry</item>
+        <item>Border Crossing</item>
+        <item>Bus Station</item>
+        <item>Bus Line</item>
+        <item>Bus Stop</item>
+        <item>Cable Car</item>
+        <item>Cruise</item>
+        <item>Duty-free Shop</item>
+        <item>General Travel</item>
+        <item>Heliport</item>
+        <item>Hotel</item>
+        <item>Bed &amp; Breakfast</item>
+        <item>Boarding House</item>
+        <item>Hostel</item>
+        <item>Hotel Pool</item>
+        <item>Motel</item>
+        <item>Resort</item>
+        <item>Roof Deck</item>
+        <item>Vacation Rental</item>
+        <item>Intersection</item>
+        <item>Light Rail Station</item>
+        <item>Metro Station</item>
+        <item>Moving Target</item>
+        <item>Pier</item>
+        <item>Port</item>
+        <item>RV Park</item>
+        <item>Rental Car Location</item>
+        <item>Rest Area</item>
+        <item>Road</item>
+        <item>Taxi Stand</item>
+        <item>Taxi</item>
+        <item>Toll Booth</item>
+        <item>Toll Plaza</item>
+        <item>Tourist Information Center</item>
+        <item>Train Station</item>
+        <item>Platform</item>
+        <item>Train</item>
+        <item>Tram Station</item>
+        <item>Transportation Service</item>
+        <item>Travel Lounge</item>
+        <item>Tunnel</item>
+    </string-array>
+
+    <string-array name="multimedia_feature_headers">
+        <item>multimedia_picture</item>
+        <item>multimedia_video</item>
+    </string-array>
+
+    <string-array name="running_applications_categories_feature_headers">
+        <item>ANDROID_WEAR</item>
+        <item>ART_AND_DESIGN</item>
+        <item>AUTO_AND_VEHICLES</item>
+        <item>BEAUTY</item>
+        <item>BOOKS_AND_REFERENCE</item>
+        <item>BUSINESS</item>
+        <item>COMICS</item>
+        <item>COMMUNICATION</item>
+        <item>DATING</item>
+        <item>EDUCATION</item>
+        <item>ENTERTAINMENT</item>
+        <item>EVENTS</item>
+        <item>FAMILY_ACTION</item>
+        <item>FAMILY_BRAINGAMES</item>
+        <item>FAMILY_CREATE</item>
+        <item>FAMILY_EDUCATION</item>
+        <item>FAMILY_MUSICVIDEO</item>
+        <item>FAMILY_PRETEND</item>
+        <item>FINANCE</item>
+        <item>FOOD_AND_DRINK</item>
+        <item>GAME_ACTION</item>
+        <item>GAME_ADVENTURE</item>
+        <item>GAME_ARCADE</item>
+        <item>GAME_BOARD</item>
+        <item>GAME_CARD</item>
+        <item>GAME_CASINO</item>
+        <item>GAME_CASUAL</item>
+        <item>GAME_EDUCATIONAL</item>
+        <item>GAME_MUSIC</item>
+        <item>GAME_PUZZLE</item>
+        <item>GAME_RACING</item>
+        <item>GAME_ROLE_PLAYING</item>
+        <item>GAME_SIMULATION</item>
+        <item>GAME_SPORTS</item>
+        <item>GAME_STRATEGY</item>
+        <item>GAME_TRIVIA</item>
+        <item>GAME_WORD</item>
+        <item>HEALTH_AND_FITNESS</item>
+        <item>HOUSE_AND_HOME</item>
+        <item>LIBRARIES_AND_DEMO</item>
+        <item>LIFESTYLE</item>
+        <item>MAPS_AND_NAVIGATION</item>
+        <item>MEDICAL</item>
+        <item>MUSIC_AND_AUDIO</item>
+        <item>NEWS_AND_MAGAZINES</item>
+        <item>PARENTING</item>
+        <item>PERSONALIZATION</item>
+        <item>PHOTOGRAPHY</item>
+        <item>PRODUCTIVITY</item>
+        <item>SHOPPING</item>
+        <item>SOCIAL</item>
+        <item>SPORTS</item>
+        <item>TOOLS</item>
+        <item>TRAVEL_AND_LOCAL</item>
+        <item>VIDEO_PLAYERS</item>
+        <item>WEATHER</item>
+    </string-array>
+
+    <string-array name="time_infos_feature_headers">
+        <item>weekday</item>
+        <item>weekend</item>
+        <item>morning</item>
+        <item>afternoon</item>
+        <item>evening</item>
+        <item>night</item>
+    </string-array>
+
+    <string-array name="weather_feature_headers">
+        <item>weather_code_200</item>
+        <item>weather_code_201</item>
+        <item>weather_code_202</item>
+        <item>weather_code_210</item>
+        <item>weather_code_211</item>
+        <item>weather_code_212</item>
+        <item>weather_code_221</item>
+        <item>weather_code_230</item>
+        <item>weather_code_231</item>
+        <item>weather_code_232</item>
+        <item>weather_code_300</item>
+        <item>weather_code_301</item>
+        <item>weather_code_302</item>
+        <item>weather_code_310</item>
+        <item>weather_code_311</item>
+        <item>weather_code_312</item>
+        <item>weather_code_313</item>
+        <item>weather_code_314</item>
+        <item>weather_code_321</item>
+        <item>weather_code_500</item>
+        <item>weather_code_501</item>
+        <item>weather_code_502</item>
+        <item>weather_code_503</item>
+        <item>weather_code_504</item>
+        <item>weather_code_511</item>
+        <item>weather_code_520</item>
+        <item>weather_code_521</item>
+        <item>weather_code_522</item>
+        <item>weather_code_531</item>
+        <item>weather_code_600</item>
+        <item>weather_code_601</item>
+        <item>weather_code_602</item>
+        <item>weather_code_611</item>
+        <item>weather_code_612</item>
+        <item>weather_code_615</item>
+        <item>weather_code_616</item>
+        <item>weather_code_620</item>
+        <item>weather_code_621</item>
+        <item>weather_code_622</item>
+        <item>weather_code_701</item>
+        <item>weather_code_711</item>
+        <item>weather_code_721</item>
+        <item>weather_code_731</item>
+        <item>weather_code_741</item>
+        <item>weather_code_751</item>
+        <item>weather_code_761</item>
+        <item>weather_code_762</item>
+        <item>weather_code_771</item>
+        <item>weather_code_781</item>
+        <item>weather_code_800</item>
+        <item>weather_code_801</item>
+        <item>weather_code_802</item>
+        <item>weather_code_803</item>
+        <item>weather_code_804</item>
+        <item>weather_temp</item>
+        <item>weather_temp_min</item>
+        <item>weather_temp_max</item>
+        <item>weather_humidity</item>
+        <item>weather_pressure</item>
+        <item>weather_wind_speed</item>
+        <item>weather_wind_direction</item>
+        <item>weather_cloudiness</item>
+    </string-array>
+
+    <string-array name="wi_fi_feature_headers">
+        <item>wifi_connected</item>
+    </string-array>
+
+</resources>

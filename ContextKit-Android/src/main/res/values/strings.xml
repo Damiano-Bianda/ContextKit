@@ -1,0 +1,42 @@
+<!--
+  ~   Copyright (c) 2017. Mattia Campana, mattia.campana@iit.cnr.it, Franca Delmastro, franca.delmastro@gmail.com
+  ~
+  ~   This file is part of ContextKit.
+  ~
+  ~   ContextKit (CK) is free software: you can redistribute it and/or modify
+  ~   it under the terms of the GNU General Public License as published by
+  ~   the Free Software Foundation, either version 3 of the License, or
+  ~   (at your option) any later version.
+  ~
+  ~   ContextKit (CK) is distributed in the hope that it will be useful,
+  ~   but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~   GNU General Public License for more details.
+  ~
+  ~   You should have received a copy of the GNU General Public License
+  ~   along with ContextKit (CK).  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">ContextKit</string>
+
+    <string name="foreground_service_notification_title">ContextKit</string>
+    <string name="foreground_service_notification_text">ContexKit is running in background</string>
+    <string name="notification_channel_name">ContextKit</string>
+    <string name="notification_channel_description">Foreground service</string>
+    <string name="notification_channel_id">ContextKit Channel ID</string>
+
+    <string name="physical_sensor_not_supported_warning_message">Device doesn\'t support PhysicalSensorProbe %s specified in user configuration, this probe will not be activated</string>
+    <string name="physical_sensor_invalid_windows_size_not_supported_warning_message">PhysicalSensorProbe %s\'s window size (%s) specified in user configuration must be at least %s, this probe will not be activated</string>
+    <string name="on_event_physical_sensor_not_supported_warning_message">Device doesn\'t support OnEventPhysicalSensorProbe %s specified in user configuration, this probe will not be activated</string>
+    <string name="no_featurable_probes_warning_message">No featurable probes has been activated, even if features module is specified as active in user configuration, this module will not be activated.</string>
+    <string name="no_probes_active_warning_message">No probes has been activated, CK service will be immediately terminated</string>
+
+    <string name="CK_already_running_warning_message">Context kit can not be activated because is already started, current status: %s</string>
+    <string name="CK_can_not_stop_now_warning_message">Context kit can not be stopped now because is initializing or already stopped, current status: %s</string>
+
+    <string name="no_app_category_in_this_version_of_CK_warning_message">Current version of ContextKit has no match between stored categories and new category: %s</string>
+    <string name="no_app_category_also_in_play_store_warning_message">Can not find a category for package %s nor in storage and nor through play store requests</string>
+    <string name="problem_during_play_store_parse_warning_message">A problem has occurred during parsing of %s Play Store webpage, check if URL information in class PlayStoreRequest are up to date</string>
+
+</resources>

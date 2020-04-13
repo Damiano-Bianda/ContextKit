@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- sensor name, sensor stat, dimension -->
+    <string-array name="physical_sensor_log_file_headers">
+        <item>timestamp</item>
+        <item>sensor_%s_%s_%s</item>
+    </string-array>
+
+    <string-array name="on_event_physical_sensor_log_file_headers">
+        <item>timestamp</item>
+        <item>on_event_sensor_%s_value</item>
+    </string-array>
+
+    <string-array name="activity_recognition_log_file_headers">
+        <item>timestamp</item>
+        <item>in_vehicle</item>
+        <item>on_bicycle</item>
+        <item>on_foot</item>
+        <item>running</item>
+        <item>still</item>
+        <item>tilting</item>
+        <item>walking</item>
+        <item>unknown</item>
+    </string-array>
+
+    <string-array name="apps_usage_log_file_headers">
+        <item>timestamp</item>
+        <item>package_name</item>
+        <item>last_time_used</item>
+        <item>total_time_in_foreground</item>
+    </string-array>
+
+    <string-array name="audio_log_file_headers">
+        <item>timestamp</item>
+        <item>ringer_mode</item>
+        <item>alarm_volume</item>
+        <item>music_volume</item>
+        <item>notification_volume</item>
+        <item>ring_volume</item>
+        <item>bluetooth_sco_on</item>
+        <item>microphone_mute</item>
+        <item>music_active</item>
+        <item>speaker_on</item>
+        <item>headset_on</item>
+    </string-array>
+
+    <string-array name="battery_log_file_headers">
+        <item>timestamp</item>
+        <item>battery_percentage</item>
+        <item>plugged</item>
+    </string-array>
+
+    <string-array name="bluetooth_device_conn_log_file_headers">
+        <item>timestamp</item>
+        <item>name</item>
+        <item>address</item>
+        <item>major_device_class</item>
+        <item>major_minor_device_class</item>
+        <item>connected</item>
+    </string-array>
+
+    <string-array name="bluetooth_device_scan_log_file_headers">
+        <item>timestamp</item>
+        <item>name</item>
+        <item>address</item>
+        <item>major_device_class</item>
+        <item>major_minor_device_class</item>
+        <item>rssi</item>
+        <item>uuid</item>
+    </string-array>
+
+    <string-array name="calls_log_file_headers">
+        <item>call_date</item>
+        <item>incoming</item>
+        <item>number</item>
+        <item>name</item>
+    </string-array>
+
+    <string-array name="cell_info_log_file_headers">
+        <item>timestamp</item>
+        <item>cell_type</item>
+        <item>id</item>
+        <item>signal_level</item>
+    </string-array>
+
+    <string-array name="current_calendar_events_log_file_headers">
+        <item>timestamp</item>
+        <item>calendar_name</item>
+        <item>all_day</item>
+        <item>start</item>
+        <item>end</item>
+        <item>title</item>
+        <item>location</item>
+    </string-array>
+
+    <string-array name="display_log_file_headers">
+        <item>timestamp</item>
+        <item>state</item>
+        <item>rotation</item>
+    </string-array>
+
+    <string-array name="hardware_info_log_file_headers">
+        <item>timestamp</item>
+        <item>android_id</item>
+        <item>wifi_mac</item>
+        <item>wifi_p2p_mac</item>
+        <item>bluetooth_mac</item>
+        <item>phone_brand</item>
+        <item>phone_model</item>
+        <item>device_id</item>
+        <item>phone_number</item>
+    </string-array>
+
+    <string-array name="installed_apps_log_file_headers">
+        <item>timestamp</item>
+        <item>packages</item>
+    </string-array>
+
+    <string-array name="location_log_file_headers">
+        <item>timestamp</item>
+        <item>latitude</item>
+        <item>longitude</item>
+        <item>speed</item>
+        <item>accuracy</item>
+        <item>altitude</item>
+        <item>bearing</item>
+        <item>time</item>
+    </string-array>
+
+    <string-array name="location_categories_log_file_headers">
+        <item>venue_name</item>
+        <item>category_id</item>
+        <item>category_name</item>
+    </string-array>
+
+    <string-array name="multimedia_log_file_headers">
+        <item>timestamp</item>
+        <item>name</item>
+        <item>type</item>
+    </string-array>
+
+    <string-array name="running_applications_log_file_headers">
+        <item>timestamp</item>
+        <item>packages</item>
+    </string-array>
+
+    <string-array name="sms_log_file_headers">
+        <item>timestamp</item>
+        <item>reception_timestamp</item>
+        <item>address</item>
+        <item>sent</item>
+        <item>contains_url</item>
+        <item>from_address_book</item>
+    </string-array>
+
+    <string-array name="time_infos_data_log_file_headers">
+        <item>timestamp</item>
+        <item>day_type</item>
+        <item>time_of_day</item>
+    </string-array>
+
+    <string-array name="weather_log_file_headers">
+        <item>timestamp</item>
+        <item>weather_id</item>
+        <item>temperature</item>
+        <item>temperature_min</item>
+        <item>temperature_max</item>
+        <item>humidity</item>
+        <item>pressure</item>
+        <item>speed</item>
+        <item>degree</item>
+        <item>cloudiness_percentage</item>
+        <item>rain_last_three_hours</item>
+        <item>snow_last_three_hours</item>
+        <item>sunrise_time</item>
+        <item>sunset_time</item>
+    </string-array>
+
+    <string-array name="wifi_p2p_data_log_file_headers">
+        <item>timestamp</item>
+        <item>address_list</item>
+    </string-array>
+
+    <string-array name="wifi_scan_log_file_headers">
+        <item>timestamp</item>
+        <item>ssid</item>
+        <item>bssid</item>
+        <item>signal_level</item>
+        <item>dbm_level</item>
+        <item>capabilities</item>
+        <item>frequency</item>
+        <item>connected</item>
+        <item>configured</item>
+    </string-array>
+
+    <string-array name="wifi_p2p_service_discovery_log_file_headers">
+        <item>timestamp</item>
+        <item>name</item>
+        <item>address</item>
+        <item>primary_device_type</item>
+        <item>secondary_device_type</item>
+        <item>connection_status</item>
+        <item>full_domain_name</item>
+        <item>device_uuid</item>
+    </string-array>
+
+</resources>
