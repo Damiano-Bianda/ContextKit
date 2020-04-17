@@ -33,7 +33,6 @@ import it.cnr.iit.ck.model.MultimediaData;
 
 public class MultimediaProbe extends OnEventProbe {
 
-    // TODO valore dati in conf
     private static final Long DATA_EXPIRATION_TIME = 5*60000L;
 
     private ContentObserver contentObserver;

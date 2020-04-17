@@ -42,7 +42,6 @@ public class P2PWriterHandlerThread extends HandlerThread {
     }
 
     public void sendP2pElement(Parcelable parcelable){
-        // TODO mettere lista sync con messaggi precedenti!
         if(handler != null) {
             Message message = handler.obtainMessage(SEND_P2P_ELEMENT_PARCELABLE_MESSAGE);
             Bundle bundle = new Bundle();

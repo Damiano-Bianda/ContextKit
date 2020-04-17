@@ -123,7 +123,6 @@ public class BLEP2PProximityProbe extends ContinuousProbe {
     private void observeScreenChanges(boolean observe) {
         DisplayManager systemService = (DisplayManager) getContext().getSystemService(Context.DISPLAY_SERVICE);
         if (observe)
-            // TODO cambiare handler
             systemService.registerDisplayListener(displayListener, null);
         else
             systemService.unregisterDisplayListener(displayListener);

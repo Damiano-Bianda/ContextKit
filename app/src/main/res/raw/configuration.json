@@ -7,12 +7,12 @@
   "features" : {
     "active" : true,
     "logfile" : "dataset.csv",
-    "interval" : 1
+    "interval" : 60
   },
   "probes" : [
     {
       "name" : "AccelerometerProbe",
-      "interval" : 10,
+      "interval" : 60,
       "active" : true,
       "logFile" : "accelerometer.csv"
     },
@@ -22,23 +22,23 @@
     },
     {
       "name" : "AmbientTemperatureProbe",
-      "interval" : 10,
+      "interval" : 60,
       "active" : true,
       "logFile" : "ambient_temperature.csv"
     },
     {
       "name" : "AppsUsageProbe",
-      "interval" : 10,
+      "interval" : 60,
       "logFile" : "apps_usage.csv"
     },
     {
       "name" : "AudioProbe",
-      "interval" : 10,
+      "interval" : 60,
       "logFile" : "audio.csv"
     },
     {
       "name" : "BatteryProbe",
-      "interval" : 10,
+      "interval" : 60,
       "logFile" : "battery.csv"
     },
     {
@@ -56,12 +56,12 @@
     },
     {
       "name" : "CellInfoProbe",
-      "interval" : 10,
+      "interval" : 60,
       "logFile" : "cells.csv"
     },
     {
       "name" : "CurrentCalendarEventsProbe",
-      "interval" : 10,
+      "interval" : 60,
       "logFile" : "calendar_current_events.csv"
     },
     {
@@ -70,49 +70,49 @@
     },
     {
       "name" : "GameRotationVectorProbe",
-      "interval" : 10,
+      "interval" : 60,
       "active" : true,
       "logFile" : "game_rotation_vector.csv"
     },
     {
       "name" : "GeomagneticRotationVectorProbe",
-      "interval" : 10,
+      "interval" : 60,
       "active" : true,
       "logFile" : "geomagnetic_rotation_vector.csv"
     },
     {
       "name" : "GravityProbe",
-      "interval" : 10,
+      "interval" : 60,
       "active" : true,
       "logFile" : "gravity.csv"
     },
     {
       "name" : "GyroscopeProbe",
-      "interval" : 10,
+      "interval" : 60,
       "active" : true,
       "logFile" : "gyroscope.csv"
     },
     {
       "name" : "InstalledAppsProbe",
-      "interval" : 10,
+      "interval" : 60,
       "logFile" : "installed_apps.csv"
     },
     {
       "name" : "LinearAccelerationProbe",
-      "interval" : 10,
+      "interval" : 60,
       "active" : true,
       "logFile" : "linear_acceleration.csv"
     },
     {
       "name" : "LocationProbe",
-      "interval" : 10,
+      "interval" : 60,
       "logFile" : "location.csv",
       "logCategoriesInLogFile" : true,
       "logCategoriesInFeatures" : true
     },
     {
       "name" : "MagneticFieldProbe",
-      "interval" : 10,
+      "interval" : 60,
       "active" : true,
       "logFile" : "magnetic_field.csv"
     },
@@ -130,25 +130,25 @@
     },
     {
       "name" : "PressureProbe",
-      "interval" : 10,
+      "interval" : 60,
       "active" : true,
       "logFile" : "pressure.csv"
     },
     {
       "name" : "RelativeHumidityProbe",
-      "interval" : 10,
+      "interval" : 60,
       "active" : true,
       "logFile" : "relative_humidity.csv"
     },
     {
       "name" : "RotationVectorProbe",
-      "interval" : 10,
+      "interval" : 60,
       "active" : true,
       "logFile" : "rotation_vector.csv"
     },
     {
       "name" : "RunningApplicationsProbe",
-      "interval" : 10,
+      "interval" : 60,
       "logFile" : "running_apps.csv"
     },
     {
@@ -158,11 +158,11 @@
     {
       "name" : "TimeInfosProbe",
       "logFile" : "time_infos.csv",
-      "interval" : 10
+      "interval" : 60
     },
     {
       "name" : "WeatherProbe",
-      "interval" : 10,
+      "interval" : 60,
       "unit" : 2,
       "appId" : "84da1f0489af48796227b87443170b50",
       "logFile" : "weather.csv"

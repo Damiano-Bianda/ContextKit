@@ -46,7 +46,6 @@ public class Worker extends HandlerThread {
     @Override
     protected void onLooperPrepared() {
         super.onLooperPrepared();
-        // TODO controllare se lo esegue il nuovo thread
         probe.setHandler(buildHandler());
     }
 

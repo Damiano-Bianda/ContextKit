@@ -10,8 +10,6 @@ import it.cnr.iit.ck.model.OnEventSensorData;
 import it.cnr.iit.ck.model.SensorSamples;
 import it.cnr.iit.ck.probes.controllers.OnEventSensorMonitor;
 
-// TODO factory sensori
-// TODO check sensori supportati
 public abstract class OnEventPhysicalSensorProbe extends OnEventProbe {
 
     private OnEventSensorMonitor sensorMonitor;
@@ -30,7 +28,6 @@ public abstract class OnEventPhysicalSensorProbe extends OnEventProbe {
     public void init() {
         sensorMonitor = new OnEventSensorMonitor(getContext(), this, onSensorEventListener, getHandler());
 
-        // TODO change
         OnEventSensorData defaultData = OnEventSensorData.getDefaultData(getDimensions());
         postDefaultValues(defaultData);
         

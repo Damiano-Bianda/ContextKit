@@ -41,7 +41,6 @@ import it.cnr.iit.ck.model.PackagesData;
  *      - "android.permission.PACKAGE_USAGE_STATS"
  */
 @SuppressWarnings("all")
-// TODO non ricordo se e questo che richiede il permesso
 class RunningApplicationsProbe extends ContinuousProbe {
 
     private static final int DEFAULT_LAST_N_MINUTES = 5;

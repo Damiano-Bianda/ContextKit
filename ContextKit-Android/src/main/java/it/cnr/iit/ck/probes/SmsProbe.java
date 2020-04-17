@@ -49,7 +49,6 @@ import it.cnr.iit.ck.model.Sms;
  *
  */
 @SuppressWarnings("unused")
-// TODO guardare se e tutto apposto
 public class SmsProbe extends OnEventProbe {
 
     private OutGoingObserver outGoingObserver;

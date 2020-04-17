@@ -45,7 +45,8 @@ import it.cnr.iit.ck.features.PlayStoreStorage;
 public class CK {
 
     // https://developer.android.com/training/monitoring-device-state/doze-standby
-    public static final boolean IS_FREE_BATTERY_USAGE_DEBUG_VARIABLE = true;
+    // TODO rimettere a true
+    public static final boolean IS_FREE_BATTERY_USAGE_DEBUG_VARIABLE = false;
 
     // to log multiloggable data also if it is empty
     public static final boolean LOG_EMPTY_MULTI_LOGGABLE_DATA = true;

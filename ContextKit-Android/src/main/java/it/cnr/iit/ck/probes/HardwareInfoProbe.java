@@ -62,7 +62,6 @@ import it.cnr.iit.ck.model.HardwareInfo;
  *  - {@link android.Manifest.permission#INTERNET}
  */
 @SuppressWarnings("unused")
-// TODO guardare se recupero # telefono
 class HardwareInfoProbe extends ContinuousProbe {
 
     private static final String WIFI_LOCK_KEY = HardwareInfoProbe.class.getName();

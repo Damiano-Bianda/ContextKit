@@ -76,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
     private void startASK(){
         String configuration = readTextFile(getResources().openRawResource(R.raw.configuration));
         CK.start(getApplicationContext(), configuration, false);
-        //long aMinute = 60000;
-        //CK.startPeriodically(getApplicationContext(),  configuration,60 * aMinute, 900 * aMinute, false);
+        long aMinute = 60000;
+        //CK.startPeriodically(getApplicationContext(),  configuration,120 * aMinute, 3000 * aMinute, false);
         //CK.startPeriodically(getApplicationContext(),  configuration,10000, 20000, false);
     }
 

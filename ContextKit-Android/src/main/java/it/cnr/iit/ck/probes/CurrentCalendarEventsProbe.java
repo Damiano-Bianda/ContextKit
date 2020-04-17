@@ -37,7 +37,6 @@ import it.cnr.iit.ck.model.LoggableElements;
  *
  */
 @SuppressWarnings("unused")
-// TODO guardare se riesco a recuperare all day
 class CurrentCalendarEventsProbe extends ContinuousProbe {
 
     @Override

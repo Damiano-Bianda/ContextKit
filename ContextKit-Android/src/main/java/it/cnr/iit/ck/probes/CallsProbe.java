@@ -51,7 +51,6 @@ import it.cnr.iit.ck.model.Call;
  *
  */
 @SuppressWarnings("unused")
-// TODO guardare se torna tutto
 class CallsProbe extends OnEventProbe {
 
     private BroadcastReceiver callsReceiver = new BroadcastReceiver() {
