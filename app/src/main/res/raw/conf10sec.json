@@ -1,9 +1,10 @@
 {
   "logPath" : "askdemo",
-  "classifiers": {
-    "file": "user_1_formatted_j48__C0.1_M3.wekamodel",
-    "preprocessing": "pca"
-  },
+  "classifiers": [
+    {
+      "raw_resource": "svm.wekamodel"
+    }
+  ],
   "features" : {
     "active" : true,
     "logfile" : "dataset.csv",

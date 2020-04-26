@@ -7,7 +7,7 @@ import java.util.List;
 import it.cnr.iit.ck.data_classification.CKClassifier;
 import weka.core.SparseInstance;
 
-public class DummyPreprocessor extends Preprocessor {
+public class DummyPreprocessor extends Preprocessor{
 
     public DummyPreprocessor(final String name, final List<CKClassifier> classifiers) {
         super("DummyPreProcessorThread", classifiers);

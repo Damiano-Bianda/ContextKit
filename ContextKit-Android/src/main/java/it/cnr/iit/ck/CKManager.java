@@ -37,6 +37,7 @@ import java.util.List;
 
 import it.cnr.iit.R;
 import it.cnr.iit.ck.commons.Utils;
+import it.cnr.iit.ck.data_classification.CKClassifier;
 import it.cnr.iit.ck.features.FeaturesWorker;
 import it.cnr.iit.ck.logs.FileChecker;
 import it.cnr.iit.ck.logs.FileLogger;
@@ -197,7 +198,7 @@ public abstract class CKManager extends Service {
         if (featurableProbes.isEmpty()) {
             Utils.logWarning(R.string.no_featurable_probes_warning_message, getApplicationContext());
         } else {
-            featuresWorker = new FeaturesWorker(featurableProbes, setup.featuresLogfile,
+            featuresWorker = new FeaturesWorker(setup.featuresTest, setup.classifiers, featurableProbes, setup.featuresLogfile,
                     setup.featuresIntervalInSeconds, getApplicationContext());
             for(BaseProbe probe: featurableProbes){
                 probe.setFeaturesWorker(featuresWorker);
@@ -228,6 +229,12 @@ public abstract class CKManager extends Service {
         }
     }
 
+    private void startClassifiers(CKSetup setup) {
+        for (CKClassifier classifier: setup.classifiers){
+            classifier.exec();
+        }
+    }
+
     private class ParseTask extends AsyncTask<String, Void, CKSetup>{
 
         @Override
@@ -240,6 +247,8 @@ public abstract class CKManager extends Service {
             // Is important this init order for threads management
             startAppCategoriesUpdater();
             startFileLogger(setup);
+
+            startClassifiers(setup);
             startFeaturesWorker(setup);
             startProbes(setup);
         }

@@ -46,8 +46,8 @@ public abstract class Preprocessor extends HandlerThread {
                 case PREPROCESS_DATA:
                     Bundle bundle = msg.getData();
                     double[] preprocessedData = handleDataPreprocessing(bundle.getDoubleArray(DATA_KEY));
-                    for (CKClassifier classifier: classifiers){
-                        classifier.classifyData(preprocessedData);
+                    for (FeatureReceiver classifier: classifiers){
+                        classifier.onFeatureVectorReceived(preprocessedData);
                     }
                     break;
             }

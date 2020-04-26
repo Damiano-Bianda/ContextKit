@@ -37,6 +37,8 @@ import java.util.List;
 
 import it.cnr.iit.R;
 import it.cnr.iit.ck.commons.Utils;
+import it.cnr.iit.ck.data_classification.CKClassifier;
+import it.cnr.iit.ck.data_classification.WekaClassifier;
 import it.cnr.iit.ck.features.FeaturesWorker;
 import it.cnr.iit.ck.model.SensorSamples;
 import it.cnr.iit.ck.probes.BaseProbe;
@@ -56,6 +58,7 @@ class CKSetup {
     private static final String JSON_FEATURES = "features";
     private static final String JSON_FEATURES_ACTIVE = "active";
     private static final String JSON_FEATURES_LOG_FILE = "logfile";
+    private static final String JSON_FEATURES_TEST = "test";
 
     private static final String JSON_PROBES = "probes";
     private static final String JSON_PROBE_NAME = "name";
@@ -77,12 +80,16 @@ class CKSetup {
     private static final String JSON_LOG_CATEGORIES_IN_FEATURES = "logCategoriesInFeatures";
     private static final String JSON_LOG_CATEGORIES_IN_LOG_FILE = "logCategoriesInLogFile";
 
+    private static final String JSON_CLASSIFIERS = "classifiers";
+    private static final String JSON_CLASSIFIER_RAW_RESOURCE = "raw_resource";
+
     // Name of the package that contains probes
     private static final String PROBES_PKG = "it.cnr.iit.ck.probes";
     private static final String JSON_FEATURES_INTERVAL = "interval";
-
     public boolean featuresModuleActive;
     public String featuresLogfile;
+
+    public List<CKClassifier> classifiers = new ArrayList<>();
 
     public List<BaseProbe> probes = new ArrayList<>();
     String loggerPath;
@@ -90,6 +97,7 @@ class CKSetup {
     Integer maxLogSizeMb;
     Integer zipperInterval;
     int featuresIntervalInSeconds;
+    boolean featuresTest;
 
     private CKSetup(){}
 
@@ -105,9 +113,28 @@ class CKSetup {
     static CKSetup parse(Context context, String jsonConf){
 
         CKSetup skSetup = new CKSetup();
-        try {
 
-            JSONObject conf = new JSONObject(jsonConf);
+        JSONObject conf = null;
+        try {
+            conf = new JSONObject(jsonConf);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return skSetup;
+        }
+
+        try {
+            JSONArray jsonClassifiers = conf.getJSONArray(JSON_CLASSIFIERS);
+            for(int i = 0; i < jsonClassifiers.length(); i++){
+                JSONObject jsonClassifier = jsonClassifiers.getJSONObject(i);
+                String jsonClassifierRawResourceName = jsonClassifier.getString(JSON_CLASSIFIER_RAW_RESOURCE);
+                int resourceId = context.getResources().getIdentifier(jsonClassifierRawResourceName, "raw", context.getPackageName());
+                skSetup.classifiers.add(new WekaClassifier(jsonClassifierRawResourceName, resourceId, context));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
 
             parseFeaturesObject(skSetup, conf);
 
@@ -150,6 +177,7 @@ class CKSetup {
         skSetup.featuresModuleActive = features.optBoolean(JSON_FEATURES_ACTIVE, true);
         skSetup.featuresLogfile = features.optString(JSON_FEATURES_LOG_FILE, null);
         skSetup.featuresIntervalInSeconds = features.optInt(JSON_FEATURES_INTERVAL, FeaturesWorker.POLL_TIMEOUT_MILLIS);
+        skSetup.featuresTest = features.optBoolean(JSON_FEATURES_TEST, false);
 
         if (!skSetup.featuresModuleActive && skSetup != null){
             Utils.logWarning( "Features module is deactived, no data will be logged in file " + skSetup.featuresLogfile);
