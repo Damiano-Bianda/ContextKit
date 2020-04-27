@@ -82,6 +82,7 @@ class CKSetup {
 
     private static final String JSON_CLASSIFIERS = "classifiers";
     private static final String JSON_CLASSIFIER_RAW_RESOURCE = "raw_resource";
+    private static final String JSON_CLASSIFIER_DATASET_INFO = "dataset_info";
 
     // Name of the package that contains probes
     private static final String PROBES_PKG = "it.cnr.iit.ck.probes";
@@ -127,8 +128,10 @@ class CKSetup {
             for(int i = 0; i < jsonClassifiers.length(); i++){
                 JSONObject jsonClassifier = jsonClassifiers.getJSONObject(i);
                 String jsonClassifierRawResourceName = jsonClassifier.getString(JSON_CLASSIFIER_RAW_RESOURCE);
-                int resourceId = context.getResources().getIdentifier(jsonClassifierRawResourceName, "raw", context.getPackageName());
-                skSetup.classifiers.add(new WekaClassifier(jsonClassifierRawResourceName, resourceId, context));
+                int rawResourceId = context.getResources().getIdentifier(jsonClassifierRawResourceName, "raw", context.getPackageName());
+                final String jsonClassifierDatasetInfoName = jsonClassifier.getString(JSON_CLASSIFIER_DATASET_INFO);
+                int datasetInfoId = context.getResources().getIdentifier(jsonClassifierDatasetInfoName, "raw", context.getPackageName());
+                skSetup.classifiers.add(new WekaClassifier(jsonClassifierRawResourceName, rawResourceId, datasetInfoId, context));
             }
         } catch (JSONException e) {
             e.printStackTrace();

@@ -2,7 +2,8 @@
   "logPath" : "askdemo",
   "classifiers": [
     {
-      "raw_resource": "svm"
+      "raw_resource": "svm",
+      "dataset_info": "dataset_info"
     }
   ],
   "features" : {

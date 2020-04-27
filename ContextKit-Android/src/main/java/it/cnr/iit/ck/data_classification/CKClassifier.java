@@ -9,19 +9,23 @@ import android.os.Message;
 
 import it.cnr.iit.ck.data_processing.FeatureReceiver;
 import weka.classifiers.Classifier;
+import weka.core.Capabilities;
+import weka.core.SerializationHelper;
 
 public abstract class CKClassifier extends HandlerThread implements FeatureReceiver {
 
     private static final int CLASSIFY_DATA = 0;
     private static final String DATA_KEY = "DATA_KEY";
 
-    protected final int resourceId;
+    final int resourceId;
+    final int datasetInfoId;
     protected final Context context;
     protected volatile CKClassifier.CKClassifierHandler handler;
 
-    public CKClassifier(final String classifierName, final int resourceId, Context applicationContext) {
+    public CKClassifier(final String classifierName, final int resourceId, int datasetInfoId, Context applicationContext) {
         super(classifierName + " Handler Thread");
         this.resourceId = resourceId;
+        this.datasetInfoId = datasetInfoId;
         this.context = applicationContext;
     }
 
@@ -43,7 +47,6 @@ public abstract class CKClassifier extends HandlerThread implements FeatureRecei
     public abstract class CKClassifierHandler extends Handler {
 
         private boolean init;
-        protected Classifier classifier;
 
         public CKClassifierHandler(Looper looper){
             super(looper);
