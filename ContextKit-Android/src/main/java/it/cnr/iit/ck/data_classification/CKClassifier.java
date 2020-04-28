@@ -8,9 +8,6 @@ import android.os.Looper;
 import android.os.Message;
 
 import it.cnr.iit.ck.data_processing.FeatureReceiver;
-import weka.classifiers.Classifier;
-import weka.core.Capabilities;
-import weka.core.SerializationHelper;
 
 public abstract class CKClassifier extends HandlerThread implements FeatureReceiver {
 
@@ -64,14 +61,12 @@ public abstract class CKClassifier extends HandlerThread implements FeatureRecei
                             init = true;
                         } catch (Exception e) {
                             e.printStackTrace();
-                            // TODO terminare e avvisare threads sottostanti
                         }
                     }
 
                     Bundle bundle = msg.getData();
                     try {
-                        // TODO aggiungere info dataset!
-                        double prediction = handleDataClassification(bundle.getDoubleArray(DATA_KEY));
+                        final Prediction prediction = handleDataClassification(bundle.getDoubleArray(DATA_KEY));
                         System.out.println(prediction);
                     } catch (Exception e) { e.printStackTrace(); }
                     break;
@@ -80,7 +75,7 @@ public abstract class CKClassifier extends HandlerThread implements FeatureRecei
 
         protected abstract void init() throws Exception;
 
-        abstract double handleDataClassification(final double[] data) throws Exception;
+        abstract Prediction handleDataClassification(final double[] data) throws Exception;
 
     }
 }

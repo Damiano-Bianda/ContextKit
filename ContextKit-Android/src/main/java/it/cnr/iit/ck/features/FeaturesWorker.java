@@ -2,6 +2,7 @@ package it.cnr.iit.ck.features;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -111,16 +112,19 @@ public class FeaturesWorker {
                     boolean isTimeout = (message == null);
                     if(isTimeout){
                         long exampleTimestamp = System.currentTimeMillis();
-                        List<Double> features = createFeaturesVector(exampleTimestamp);
-                        for (FeatureReceiver featureReceiver: featureReceivers){
-                            // TODO check if ok (non null) come si comporta con NaN e copy
-                            featureReceiver.onFeatureVectorReceived(copyToArray(features));
-                        }
-                        if (logfile != null) {
-                            FileLogger logger = FileLogger.getInstance();
-                            if (logger.logFileIsEmptyOrDoesntExists(logfile))
-                                logger.store(logfile, getFeatureHeadersRow(), false);
-                            logger.store(logfile, exampleTimestamp + FileLogger.SEP + TextUtils.join(FileLogger.SEP, features), false);
+                        try {
+                            List<Double> features = createFeaturesVector(exampleTimestamp);
+                            for (FeatureReceiver featureReceiver: featureReceivers){
+                                featureReceiver.onFeatureVectorReceived(copyToArray(features));
+                            }
+                            if (logfile != null) {
+                                FileLogger logger = FileLogger.getInstance();
+                                if (logger.logFileIsEmptyOrDoesntExists(logfile))
+                                    logger.store(logfile, getFeatureHeadersRow(), false);
+                                logger.store(logfile, exampleTimestamp + FileLogger.SEP + TextUtils.join(FileLogger.SEP, features), false);
+                            }
+                        } catch (TestExampleException e) {
+                            e.printStackTrace();
                         }
                         timeout = timeoutInMillis;
                     } else {
@@ -190,7 +194,7 @@ public class FeaturesWorker {
          * NaN values can be contained for probes that haven't sent any data and haven't specified a default value.
          * @return a list of featuresModuleActive or null if some partial feature vectors are invalid: expired or never received by the probe
          */
-        public List<Double> createFeaturesVector(long exampleTimestamp) {
+        public List<Double> createFeaturesVector(long exampleTimestamp) throws TestExampleException {
             List<Double> features = new ArrayList<>();
             for(Map.Entry<BaseProbe, FeatureMessage> entry: lastMessages.entrySet()){
                 BaseProbe probe = entry.getKey();
@@ -243,7 +247,7 @@ public class FeaturesWorker {
         }
 
         @Override
-        public List<Double> createFeaturesVector(long exampleTimestamp) {
+        public List<Double> createFeaturesVector(long exampleTimestamp) throws TestExampleException {
             // Avoid memory leaks
             for(Map.Entry<BaseProbe, FeatureMessage> entry: lastMessages.entrySet()) {
                 BaseProbe probe = entry.getKey();
@@ -255,37 +259,43 @@ public class FeaturesWorker {
 
             if (!readHeader){
                 try {
-                    final List<String> allHeaders = Arrays.asList(datasetInputStream.readLine().split(","));
+                    final String headerRow = datasetInputStream.readLine();
+                    final List<String> allHeaders = Arrays.asList(headerRow.split(separator));
                     for (String headerToRemove: headersToRemove){
-                        // TODO check -1
-                        indicesToRemove.add(allHeaders.indexOf(headerToRemove));
+                        final int indexToRemove = allHeaders.indexOf(headerToRemove);
+                        if(indexToRemove == -1){
+                            Utils.logWarning("Can not find header " + headerToRemove +
+                                    " in test dataset, this data column will not be removed");
+                        } else {
+                            indicesToRemove.add(indexToRemove);
+                        }
                     }
                     readHeader = true;
                 } catch (IOException e) {
                     e.printStackTrace();
-                    // TODO return null
+                    throw new TestExampleException("Can not read header row, no testset will be processed");
                 }
             }
 
-            try {
-                final String row = datasetInputStream.readLine();
-                final List<Double> features = new ArrayList<>();
-                // TODO check index!
-                final String[] strValues = row.split(separator);
-                for (int i = 0; i < strValues.length; i++){
-                    if (!indicesToRemove.contains(i)) {
-                        features.add(Double.valueOf(strValues[i]));
+            if (readHeader) {
+                try {
+                    final String dataRow = datasetInputStream.readLine();
+                    final List<Double> features = new ArrayList<>();
+                    final String[] strValues = dataRow.split(separator);
+                    for (int i = 0; i < strValues.length; i++) {
+                        if (!indicesToRemove.contains(i)) {
+                            features.add(Double.valueOf(strValues[i]));
+                        }
                     }
+                    return features;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    throw new TestExampleException("Can not read data row, no test example will be processed");
                 }
-                return features;
-            } catch (IOException e) {
-                e.printStackTrace();
+            } else {
+                throw new TestExampleException("Header has not been read, no text example will be created");
             }
 
-            // TODO vedere se tornare null quando c'é errore e gestirlo
-            // TODO tornare null se non ho piú elementi? e gestirlo
-            Utils.logWarning("Can not create fake dataset example");
-            return super.createFeaturesVector(exampleTimestamp);
         }
     }
 }
