@@ -25,7 +25,6 @@ public class WekaClassifier extends CKClassifier{
         protected Classifier classifier;
         private Instances datasetDataInfo;
 
-
         public WekaClassifierHandler(Looper looper) {
             super(looper);
         }
@@ -50,6 +49,6 @@ public class WekaClassifier extends CKClassifier{
             datasetDataInfo.clear();
             return new Prediction(predictionNumericValue, predictionStringLabel);
         }
-
     }
+
 }

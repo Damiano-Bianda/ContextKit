@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 
 import it.cnr.iit.ck.data_processing.FeatureReceiver;
 
@@ -68,6 +69,7 @@ public abstract class CKClassifier extends HandlerThread implements FeatureRecei
                     try {
                         final Prediction prediction = handleDataClassification(bundle.getDoubleArray(DATA_KEY));
                         System.out.println(prediction);
+                        Log.e("prediction", prediction + "");
                     } catch (Exception e) { e.printStackTrace(); }
                     break;
             }

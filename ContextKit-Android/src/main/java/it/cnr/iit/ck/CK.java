@@ -27,19 +27,27 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import it.cnr.iit.R;
 import it.cnr.iit.ck.commons.Utils;
 import it.cnr.iit.ck.features.PlayStoreNetworking;
 import it.cnr.iit.ck.features.PlayStoreStorage;
+import weka.classifiers.functions.LibSVM;
+import weka.core.Instances;
+import weka.core.SerializationHelper;
 
 @SuppressWarnings("unused")
 public class CK {
@@ -135,4 +143,22 @@ public class CK {
         return intent;
     }
 
+    public static void loadHeavyFile() throws Exception {
+        final String path = Environment.getExternalStorageDirectory() + File.separator + "askdemo" + File.separator + "heavy_test";
+        final Object read = SerializationHelper.read(path);
+    }
+
+    public static void testLibSVM(Context context) throws Exception {
+
+        String string = Utils.readTextFile(context.getResources().openRawResource(R.raw.weka_test));
+        StringReader datafile = new StringReader(string);
+
+        Instances dataset = new Instances(datafile);
+        dataset.setClassIndex(dataset.numAttributes() - 1);
+
+        LibSVM libSVM = new LibSVM();
+        libSVM.buildClassifier(dataset);
+        final double v = libSVM.classifyInstance(dataset.get(0));
+        Log.e("prediction", v + "");
+    }
 }

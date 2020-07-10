@@ -36,15 +36,10 @@ import it.cnr.iit.ck.CKScheduler;
  */
 public class MainActivity extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-
-
-
     }
 
     @Override
@@ -66,6 +61,22 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }*/
+
+        // TODO remove
+        for (int i = 0; i < 1;i++) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        //CK.loadHeavyFile();
+                        CK.testLibSVM(getApplicationContext());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        }
+
         if (CK.isRunning(getApplicationContext())){
             ((Button)findViewById(R.id.button2)).setText("STOP READING");
         } else {
