@@ -200,9 +200,6 @@ public abstract class CKManager extends Service {
         } else {
             featuresWorker = new FeaturesWorker(setup.featuresTest, setup.classifiers, featurableProbes, setup.featuresLogfile,
                     setup.featuresIntervalInSeconds, getApplicationContext());
-            for(BaseProbe probe: featurableProbes){
-                probe.setFeaturesWorker(featuresWorker);
-            }
             featuresWorker.start();
         }
 
@@ -244,7 +241,6 @@ public abstract class CKManager extends Service {
 
         @Override
         protected void onPostExecute(CKSetup setup) {
-            // Is important this init order for threads management
             startAppCategoriesUpdater();
             startFileLogger(setup);
 

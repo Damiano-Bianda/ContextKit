@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface Featurable {
     List<Double> getFeatures(Context context);
-
 }

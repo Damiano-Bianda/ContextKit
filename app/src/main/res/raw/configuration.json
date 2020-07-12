@@ -7,10 +7,10 @@
     }
   ],
   "features" : {
-    "test" : true,
+    "test" : false,
     "active" : true,
     "logfile" : "dataset.csv",
-    "interval" : 1
+    "interval" : 10
   },
   "probes" : [
     {

@@ -23,6 +23,7 @@ import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import it.cnr.iit.R;
 import it.cnr.iit.ck.commons.Utils;
@@ -31,47 +32,35 @@ import it.cnr.iit.ck.logs.FileLogger;
 
 public class MultimediaData implements Loggable, Featurable {
 
-    private String name;
-    private final MultimediaType type;
+    private final String name;
+    private final boolean isImage;
+    private final boolean isVideo;
 
-    public enum MultimediaType {IMAGE, VIDEO, DEFAULT}
-
-    public MultimediaData(String fileName, MultimediaType type) {
+    public MultimediaData(String fileName, boolean isImage, boolean isVideo) {
         this.name = fileName;
-        this.type = type;
-    }
-
-    /**
-     * Creates a default MultimediaData type
-     */
-    public MultimediaData() {
-        this.name = "";
-        this.type = MultimediaType.DEFAULT;
+        this.isImage = isImage;
+        this.isVideo = isVideo;
     }
 
     @Override
     public String getRowToLog() {
-        return Utils.formatStringForCSV(name) + FileLogger.SEP + Utils.formatStringForCSV(type.toString());
+        return Utils.formatStringForCSV(name) + FileLogger.SEP + isImage + "IMAGE" + isVideo + "VIDEO";
     }
 
     @Override
     public List<Double> getFeatures(Context context) {
         List<Double> features = new ArrayList<>();
-        switch (type){
-            case IMAGE:
-                features.add(1d);
-                features.add(0d);
-                break;
-            case VIDEO:
-                features.add(0d);
-                features.add(1d);
-                break;
-            case DEFAULT:
-                features.add(0d);
-                features.add(0d);
-                break;
-        }
+        features.add(isImage? 1d : 0d);
+        features.add(isVideo? 1d : 0d);
         return features;
+    }
+
+    public boolean isImage() {
+        return isImage;
+    }
+
+    public boolean isVideo() {
+        return isVideo;
     }
 
 }

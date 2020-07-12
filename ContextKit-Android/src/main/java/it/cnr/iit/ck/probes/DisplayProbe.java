@@ -91,6 +91,6 @@ class DisplayProbe extends OnEventProbe {
         DisplayInfo data = new DisplayInfo(displayManager.getDisplay(
                 Display.DEFAULT_DISPLAY));
         logOnFile(true, data);
-        post(data);
+        setFeaturable(data);
     }
 }

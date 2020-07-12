@@ -20,6 +20,7 @@
 package it.cnr.iit.ck.probes;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
@@ -27,8 +28,13 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import it.cnr.iit.R;
 import it.cnr.iit.ck.commons.Utils;
+import it.cnr.iit.ck.model.Featurable;
 import it.cnr.iit.ck.model.MultimediaData;
 
 public class MultimediaProbe extends OnEventProbe {
@@ -36,10 +42,11 @@ public class MultimediaProbe extends OnEventProbe {
     private static final Long DATA_EXPIRATION_TIME = 5*60000L;
 
     private ContentObserver contentObserver;
+    private long imageExpiration = -1;
+    private long videoExpiration = -1;
 
     @Override
     public void init() {
-        postDefaultValues(new MultimediaData());
         contentObserver = initMediaStoreObserver();
         registerMediaStoreObserver();
     }
@@ -65,19 +72,18 @@ public class MultimediaProbe extends OnEventProbe {
                         MultimediaData data = null;
 
                         if (isImage(uri)) {
-                            data = new MultimediaData(fileName,
-                                    MultimediaData.MultimediaType.IMAGE);
+                            data = new MultimediaData(fileName, true, false);
                         } else if (isVideo(uri)) {
-                            data = new MultimediaData(fileName,
-                                    MultimediaData.MultimediaType.VIDEO);
+                            data = new MultimediaData(fileName, false, true);
                         }
 
-                        logOnFile(true, data);
-                        postWithExpiration(data, DATA_EXPIRATION_TIME);
+                        if (data != null) {
+                            logOnFile(true, data);
+                            setFeaturable(data);
+                        }
                     }
                     cursor.close();
                 }
-
                 super.onChange(selfChange, uri);
             }
 
@@ -115,6 +121,24 @@ public class MultimediaProbe extends OnEventProbe {
         };
     }
 
+    @Override
+    protected synchronized void setFeaturable(Featurable featurable) {
+        long expirationTime = System.currentTimeMillis() + DATA_EXPIRATION_TIME;
+        final MultimediaData multimediaData = (MultimediaData) featurable;
+        if (multimediaData.isImage()){
+            imageExpiration = expirationTime;
+        } else if (multimediaData.isVideo()){
+            videoExpiration = expirationTime;
+        }
+    }
+
+    @Override
+    public synchronized List<Double> getFeatures(Context context) {
+        long now = System.currentTimeMillis();
+        MultimediaData multimediaData = new MultimediaData("",
+                now <= imageExpiration, now <= videoExpiration);
+        return multimediaData.getFeatures(context);
+    }
 
     private void registerMediaStoreObserver() {
         ContentResolver contentResolver = getContext().getContentResolver();

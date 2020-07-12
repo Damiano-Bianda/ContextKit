@@ -4,15 +4,21 @@ import android.content.Context;
 import android.hardware.SensorManager;
 import android.util.Log;
 
+import java.util.Collections;
+import java.util.List;
+
 import it.cnr.iit.R;
 import it.cnr.iit.ck.commons.Utils;
+import it.cnr.iit.ck.controllers.SensorMonitor;
+import it.cnr.iit.ck.model.Featurable;
 import it.cnr.iit.ck.model.OnEventSensorData;
 import it.cnr.iit.ck.model.SensorSamples;
 import it.cnr.iit.ck.probes.controllers.OnEventSensorMonitor;
 
 public abstract class OnEventPhysicalSensorProbe extends OnEventProbe {
 
-    private OnEventSensorMonitor sensorMonitor;
+    private SensorSamples sensorSamples;
+    private SensorMonitor sensorMonitor;
 
     public interface OnEventListener {
         void onDataAvailable(float[] data);
@@ -21,22 +27,43 @@ public abstract class OnEventPhysicalSensorProbe extends OnEventProbe {
     private OnEventListener onSensorEventListener = data -> {
         OnEventSensorData onEventSensorData = new OnEventSensorData(data);
         logOnFile(true, onEventSensorData);
-        post(onEventSensorData);
+    };
+
+    private SensorMonitor.SensorSampleEvent onSensorSampleEvent = new SensorMonitor.SensorSampleEvent() {
+        @Override
+        public void getSample(float[] values) {
+            final OnEventSensorData data = new OnEventSensorData(values);
+            logOnFile(true, data);
+            setFeaturable(data);
+        }
     };
 
     @Override
-    public void init() {
-        sensorMonitor = new OnEventSensorMonitor(getContext(), this, onSensorEventListener, getHandler());
-
-        OnEventSensorData defaultData = OnEventSensorData.getDefaultData(getDimensions());
-        postDefaultValues(defaultData);
-        
+    protected synchronized void setFeaturable(Featurable featurable) {
+        sensorSamples.newSample(((OnEventSensorData) featurable).getData());
     }
 
     @Override
-    public void onFirstRun() {
-
+    public synchronized List<Double> getFeatures(Context context) {
+        if (sensorSamples == null){
+            return Collections.nCopies(SensorSamples.STATISTIC_NAMES.length, Double.NaN);
+        } else {
+            sensorSamples.padWindowWithLastElementUntilMinQuantityOfSamples();
+            final List<Double> statistics = sensorSamples.getStatistics();
+            sensorSamples.reset();
+            return statistics;
+        }
     }
+
+    @Override
+    public void init() {
+        synchronized (this){ sensorSamples = new SensorSamples(getDimensions()); }
+        sensorMonitor = new SensorMonitor(getSensorId(), getDimensions(), onSensorSampleEvent,
+                getContext(), getHandler());
+    }
+
+    @Override
+    public void onFirstRun() {}
 
     @Override
     void onStop() {
@@ -53,8 +80,6 @@ public abstract class OnEventPhysicalSensorProbe extends OnEventProbe {
         return Utils.getSensorHeaders(R.array.on_event_physical_sensor_feature_headers,
                 false, getContext(), getDimensions(), getSensorName());
     }
-
-
 
     @Override
     public String[] getLogFileHeaders() {

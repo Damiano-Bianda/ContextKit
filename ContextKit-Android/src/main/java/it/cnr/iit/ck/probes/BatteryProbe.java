@@ -69,7 +69,7 @@ class BatteryProbe extends ContinuousProbe {
 
         if(batteryInfo != null){
             logOnFile(true, batteryInfo);
-            post(batteryInfo);
+            setFeaturable(batteryInfo);
         }
     }
 }

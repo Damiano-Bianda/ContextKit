@@ -74,7 +74,7 @@ public class WeatherProbe extends ContinuousProbe {
         public void onWeatherAvailable(final OpenWeatherData data) {
             getHandler().post(() -> {
                 logOnFile(true, data);
-                post(data);
+                setFeaturable(data);
             });
         }
 

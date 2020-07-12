@@ -81,7 +81,7 @@ public class ActivityRecognitionData implements Loggable, Featurable{
                     break;
             }
 
-            if (pos != -1) act[pos] = da.getConfidence();
+            if (pos != -1) act[pos] = da.getConfidence() / 100.0f;
         }
 
     }

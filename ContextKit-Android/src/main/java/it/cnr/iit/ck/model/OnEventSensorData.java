@@ -14,7 +14,7 @@ public class OnEventSensorData implements Loggable, Featurable {
 
     private final float[] data;
 
-    public  OnEventSensorData(float[] data){
+    public OnEventSensorData(float[] data){
         this.data = data;
     }
 
@@ -36,5 +36,9 @@ public class OnEventSensorData implements Loggable, Featurable {
         for(int i = 0; i < dimensions; i++)
             data[i] = Float.NaN;
         return new OnEventSensorData(data);
+    }
+
+    public float[] getData() {
+        return data;
     }
 }

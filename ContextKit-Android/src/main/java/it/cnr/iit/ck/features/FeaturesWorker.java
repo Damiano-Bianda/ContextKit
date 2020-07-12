@@ -2,30 +2,18 @@ package it.cnr.iit.ck.features;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
 
 import it.cnr.iit.R;
-import it.cnr.iit.ck.commons.Utils;
 import it.cnr.iit.ck.data_processing.FeatureReceiver;
 import it.cnr.iit.ck.logs.FileLogger;
-import it.cnr.iit.ck.model.SensorSamples;
 import it.cnr.iit.ck.probes.BaseProbe;
-import it.cnr.iit.ck.probes.OnEventPhysicalSensorProbe;
 
 public class FeaturesWorker {
 
@@ -45,14 +33,6 @@ public class FeaturesWorker {
         this.timeoutInMillis = timeoutInSeconds * 1000;
     }
 
-    public void post(FeatureMessage featureMessage){
-        try {
-            featureRunner.messageQueue.put(featureMessage);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void start(){
         featureThread.start();
     }
@@ -69,33 +49,17 @@ public class FeaturesWorker {
      */
     class FeatureRunner implements Runnable{
 
-        private final LinkedBlockingQueue<FeatureMessage> messageQueue;
-        final LinkedHashMap<BaseProbe, FeatureMessage> lastMessages;
-        private final HashMap<BaseProbe, FeatureMessage> defaultValues;
-        final HashMap<OnEventPhysicalSensorProbe, SensorSamples> onEventSensorSamples;
         private final Context context;
-
+        private final List<BaseProbe> activeProbes;
         private final List<? extends FeatureReceiver> featureReceivers;
 
         /**
          * Create a new FeatureRunner
-         * @param activeProbesNames the list with the name of active probes, order of elements is the order of construction of examples
          */
-        public FeatureRunner(List<? extends FeatureReceiver> featureReceivers, List<BaseProbe> activeProbesNames, Context context){
-            messageQueue = new LinkedBlockingQueue<>();
-            lastMessages = new LinkedHashMap<>();
-            defaultValues = new HashMap<>();
-            onEventSensorSamples = new HashMap<>();
+        public FeatureRunner(List<? extends FeatureReceiver> featureReceivers, List<BaseProbe> activeProbes, Context context){
             this.featureReceivers = featureReceivers;
             this.context = context;
-            FeatureMessage fakeMessage = new FeatureMessage(null, null, 0, 0);
-            for(BaseProbe probe: activeProbesNames){
-                lastMessages.put(probe, fakeMessage);
-                if (probe instanceof  OnEventPhysicalSensorProbe){
-                    OnEventPhysicalSensorProbe psp = (OnEventPhysicalSensorProbe) probe;
-                    onEventSensorSamples.put(psp, new SensorSamples((psp).getDimensions()));
-                }
-            }
+            this.activeProbes = activeProbes;
         }
 
         /**
@@ -104,33 +68,25 @@ public class FeaturesWorker {
          */
         @Override
         public void run() {
-            long timeout = timeoutInMillis;
-            while (!Thread.currentThread().isInterrupted()) {
+
+            while(!Thread.currentThread().isInterrupted()){
                 try {
-                    long start = System.currentTimeMillis();
-                    FeatureMessage message = messageQueue.poll(timeout, TimeUnit.MILLISECONDS);
-                    boolean isTimeout = (message == null);
-                    if(isTimeout){
-                        long exampleTimestamp = System.currentTimeMillis();
-                        try {
-                            List<Double> features = createFeaturesVector(exampleTimestamp);
-                            for (FeatureReceiver featureReceiver: featureReceivers){
-                                featureReceiver.onFeatureVectorReceived(copyToArray(features));
-                            }
-                            if (logfile != null) {
-                                FileLogger logger = FileLogger.getInstance();
-                                if (logger.logFileIsEmptyOrDoesntExists(logfile))
-                                    logger.store(logfile, getFeatureHeadersRow(), false);
-                                logger.store(logfile, exampleTimestamp + FileLogger.SEP + TextUtils.join(FileLogger.SEP, features), false);
-                            }
-                        } catch (TestExampleException e) {
-                            e.printStackTrace();
+                    Thread.sleep(timeoutInMillis);
+                    List<Double> features = new ArrayList<>();
+                    for (BaseProbe probe: activeProbes){
+                        features.addAll(probe.getFeatures(context));
+                    }
+                    if (!features.contains(Double.NaN)){
+                        for (FeatureReceiver receiver: featureReceivers){
+                            receiver.onFeatureVectorReceived(copyToArray(features));
                         }
-                        timeout = timeoutInMillis;
-                    } else {
-                        storeFeaturesSubvector(message);
-                        long elapsed = System.currentTimeMillis() - start;
-                        timeout -= elapsed;
+                    }
+                    if (logfile != null) {
+                        long exampleTimestamp = System.currentTimeMillis();
+                        FileLogger logger = FileLogger.getInstance();
+                        if (logger.logFileIsEmptyOrDoesntExists(logfile))
+                            logger.store(logfile, getFeatureHeadersRow(), false);
+                        logger.store(logfile, exampleTimestamp + FileLogger.SEP + TextUtils.join(FileLogger.SEP, features), false);
                     }
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
@@ -147,75 +103,16 @@ public class FeaturesWorker {
             return array;
         }
 
-        /**
-         * This method generates a row containing all features header, for internal use, IT ASSUMES
-         * THAT the list of valid Featurable objects are all presents, this can be assured if
-         * {@link FeatureRunner#createFeaturesVector(long)} return not null with the same timestamp
-         * as parameter and without modifications of this object's internal state
-         * between the call of those two methods.
-         * @return
-         */
         private String getFeatureHeadersRow() {
             StringBuilder sb = new StringBuilder();
             for(String header: context.getResources().getStringArray(R.array.features_common_headers)){
                 sb.append(header).append(FileLogger.SEP);
             }
-            for(Map.Entry<BaseProbe, FeatureMessage> entry: lastMessages.entrySet()){
-                BaseProbe probe = entry.getKey();
+            for(BaseProbe probe: activeProbes){
                 String[] featureColumnNames = probe.getFeaturesHeaders();
                 sb.append(TextUtils.join(FileLogger.SEP, featureColumnNames)).append(FileLogger.SEP);
             }
             return sb.substring(0, sb.length() - FileLogger.SEP.length());
-        }
-
-        private void storeFeaturesSubvector(FeatureMessage message) {
-            BaseProbe sender = message.getSender();
-            if (message.isDefaultValue()){
-                defaultValues.put(sender, message);
-            } else {
-                lastMessages.put(sender, message);
-                if (sender instanceof OnEventPhysicalSensorProbe){
-                    onEventSensorSamples.get(sender).newSample(getOnEventPhysicalSensorProbeData(message));
-                }
-            }
-        }
-
-        private float[] getOnEventPhysicalSensorProbeData(FeatureMessage message) {
-            List<Double> data = message.getFeaturableData().getFeatures(context);
-            float[] convertedData = new float[data.size()];
-            for(int i = 0; i < convertedData.length; i++){
-                convertedData[i] = (float) ((double) data.get(i));
-            }
-            return convertedData;
-        }
-
-        /**
-         * Concatenate all partial feature vectors in the order specified by configuration file to obtain a complete one.
-         * NaN values can be contained for probes that haven't sent any data and haven't specified a default value.
-         * @return a list of featuresModuleActive or null if some partial feature vectors are invalid: expired or never received by the probe
-         */
-        public List<Double> createFeaturesVector(long exampleTimestamp) throws TestExampleException {
-            List<Double> features = new ArrayList<>();
-            for(Map.Entry<BaseProbe, FeatureMessage> entry: lastMessages.entrySet()){
-                BaseProbe probe = entry.getKey();
-                if (probe instanceof OnEventPhysicalSensorProbe){
-                    SensorSamples sensorSamples = onEventSensorSamples.get(probe);
-                    sensorSamples.padWindowWithLastElementUntilMinQuantityOfSamples();
-                    features.addAll(sensorSamples.getStatistics());
-                    sensorSamples.reset();
-                } else {
-                    FeatureMessage featureMessage = entry.getValue();
-                    if (featureMessage.isValid(exampleTimestamp)) {
-                        features.addAll(featureMessage.getFeaturableData().getFeatures(context));
-                    } else if (defaultValues.containsKey(probe)) {
-                        List<Double> defaultFeatures = defaultValues.get(probe).getFeaturableData().getFeatures(context);
-                        features.addAll(defaultFeatures);
-                    } else {
-                        features.addAll(Collections.nCopies(probe.getFeaturesHeaders().length, Double.NaN));
-                    }
-                }
-            }
-            return features;
         }
 
     }
@@ -237,15 +134,15 @@ public class FeaturesWorker {
          */
         public FeatureRunnerTest(List<? extends FeatureReceiver> featureReceivers, List<BaseProbe> activeProbesNames, Context context) {
             super(featureReceivers, activeProbesNames, context);
-            // TODO temp poi spostare in conf e oggetto in app
             separator = ",";
             headersToRemove = new ArrayList<>();
             headersToRemove.add("\"time\"");
             headersToRemove.add("\"label\"");
             indicesToRemove = new HashSet<>();
-            datasetInputStream = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.user_1)));
+            datasetInputStream = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.context_labeler_sub_sample)));
         }
 
+        /*
         @Override
         public List<Double> createFeaturesVector(long exampleTimestamp) throws TestExampleException {
             // Avoid memory leaks
@@ -296,6 +193,6 @@ public class FeaturesWorker {
                 throw new TestExampleException("Header has not been read, no text example will be created");
             }
 
-        }
+        }*/
     }
 }

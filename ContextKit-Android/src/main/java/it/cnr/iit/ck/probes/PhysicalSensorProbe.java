@@ -13,12 +13,24 @@ import it.cnr.iit.ck.model.SensorsStats;
 
 public abstract class PhysicalSensorProbe extends ContinuousProbe {
 
+    private static final int DEFAULT_SAMPLING_RATE = 20;
+
+    private SensorSamples sensorSamples;
     private SensorMonitor sensorMonitor;
-    private int samplingRate = getDefaultSamplingRate();
+    private int samplingRate = DEFAULT_SAMPLING_RATE;
+
+    private SensorMonitor.SensorSampleEvent onSensorSampleEvent = new SensorMonitor.SensorSampleEvent() {
+        @Override
+        public void getSample(float[] values) {
+            sensorSamples.newSample(values);
+        }
+    };
 
     @Override
     public void init() {
-        sensorMonitor = new SensorMonitor(getContext(), this, getHandler());
+        sensorSamples = new SensorSamples(getDimensions(), getWindowSize());
+        sensorMonitor = new SensorMonitor(getSensorId(), getDimensions(),
+                getSamplingPeriodInMicroseconds(), onSensorSampleEvent, getContext(), getHandler());
     }
 
     @Override
@@ -31,7 +43,6 @@ public abstract class PhysicalSensorProbe extends ContinuousProbe {
 
     @Override
     public void exec() {
-        SensorSamples sensorSamples = sensorMonitor.getSensorSamples();
         try {
             sensorSamples.padWindowWithLastElement();
         } catch (SensorSamples.CanNotPadAnInfiniteWindowException e) {
@@ -41,7 +52,7 @@ public abstract class PhysicalSensorProbe extends ContinuousProbe {
         sensorSamples.reset();
         SensorsStats data = new SensorsStats(stats);
         logOnFile(true, data);
-        post(data);
+        setFeaturable(data);
     }
 
     @Override
@@ -64,10 +75,6 @@ public abstract class PhysicalSensorProbe extends ContinuousProbe {
 
     public void setSamplingRate(int samplingRate){
         this.samplingRate = samplingRate;
-    }
-
-    public int getDefaultSamplingRate(){
-        return 20;
     }
 
     @Override

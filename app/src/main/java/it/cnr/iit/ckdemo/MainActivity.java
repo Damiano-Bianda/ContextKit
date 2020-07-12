@@ -19,7 +19,9 @@
 
 package it.cnr.iit.ckdemo;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -56,27 +58,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        /*try {
-            WekaTest.run2(getApplicationContext());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-
-        // TODO remove
-        for (int i = 0; i < 1;i++) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        //CK.loadHeavyFile();
-                        CK.testLibSVM(getApplicationContext());
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
-        }
-
         if (CK.isRunning(getApplicationContext())){
             ((Button)findViewById(R.id.button2)).setText("STOP READING");
         } else {
@@ -87,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
     private void startASK(){
         String configuration = readTextFile(getResources().openRawResource(R.raw.configuration));
         CK.start(getApplicationContext(), configuration, false);
-        long aMinute = 60000;
-        //CK.startPeriodically(getApplicationContext(),  configuration,120 * aMinute, 3000 * aMinute, false);
-        //CK.startPeriodically(getApplicationContext(),  configuration,10000, 20000, false);
+        /*long aMinute = 60000;
+        CK.startPeriodically(getApplicationContext(),  configuration,120 * aMinute, 3000 * aMinute, false);
+        CK.startPeriodically(getApplicationContext(),  configuration,10000, 20000, false);*/
     }
 
     private void stopASK(){

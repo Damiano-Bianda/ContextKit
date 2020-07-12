@@ -80,7 +80,7 @@ class ActivityRecognitionProbe extends OnEventProbe {
                 if(intent != null && intent.hasExtra(ActivityRecognitionProbe.LOG_INTENT_FIELD) &&
                         intent.getStringExtra(ActivityRecognitionProbe.LOG_INTENT_FIELD) != null) {
                     logOnFile(true, data);
-                    post(data);
+                    setFeaturable(data);
                 }
             }
         }

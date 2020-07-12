@@ -83,7 +83,7 @@ class RunningApplicationsProbe extends ContinuousProbe {
         packagesData.setPackages(recentApplications);
 
         logOnFile(true, packagesData);
-        post(packagesData);
+        setFeaturable(packagesData);
 
     }
 

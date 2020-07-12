@@ -2,8 +2,12 @@ package it.cnr.iit.ck.data_classification;
 
 import android.content.Context;
 import android.os.Looper;
+import android.util.Log;
+
+import java.text.MessageFormat;
 
 import weka.classifiers.Classifier;
+import weka.core.Attribute;
 import weka.core.DenseInstance;
 import weka.core.Instances;
 import weka.core.SerializationHelper;
@@ -33,21 +37,29 @@ public class WekaClassifier extends CKClassifier{
         protected void init() throws Exception {
             this.classifier = (Classifier) SerializationHelper.read(context.getResources().openRawResource(resourceId));
             this.datasetDataInfo = (Instances) SerializationHelper.read(context.getResources().openRawResource(datasetInfoId));
+            final int i = datasetDataInfo.numAttributes();
         }
 
         @Override
         Prediction handleDataClassification(double[] data) throws Exception {
-            DenseInstance instance = new DenseInstance(datasetDataInfo.numAttributes());
-            datasetDataInfo.add(instance);
-            instance.setDataset(datasetDataInfo);
-            for (int attrIdx = 0; attrIdx < data.length; attrIdx++){
-                instance.setValue(attrIdx, data[attrIdx]);
+            final int numAttributes = datasetDataInfo.numAttributes();
+            if (data.length == numAttributes) {
+                DenseInstance instance = new DenseInstance(numAttributes);
+                datasetDataInfo.add(instance);
+                instance.setDataset(datasetDataInfo);
+                for (int attrIdx = 0; attrIdx < data.length; attrIdx++) {
+                    instance.setValue(attrIdx, data[attrIdx]);
+                }
+                double predictionNumericValue = classifier.classifyInstance(instance);
+                final String predictionStringLabel =
+                        datasetDataInfo.classAttribute().value((int) Math.round(predictionNumericValue));
+                datasetDataInfo.clear();
+                return new Prediction(predictionNumericValue, predictionStringLabel);
+            } else {
+                return new Prediction(-1, MessageFormat.format(
+                        "Model attributes length ({0}) does not match generated array length ({1})",
+                        numAttributes, data.length));
             }
-            double predictionNumericValue = classifier.classifyInstance(instance);
-            final String predictionStringLabel =
-                    datasetDataInfo.classAttribute().value((int) Math.round(predictionNumericValue));
-            datasetDataInfo.clear();
-            return new Prediction(predictionNumericValue, predictionStringLabel);
         }
     }
 

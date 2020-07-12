@@ -9,14 +9,16 @@ import android.os.Handler;
 
 import java.util.Arrays;
 
+import it.cnr.iit.ck.model.SensorSamples;
 import it.cnr.iit.ck.probes.OnEventPhysicalSensorProbe;
 
 public class OnEventSensorMonitor {
 
     private final Sensor sensor;
     private final SensorManager sensorManager;
-    private final OnEventPhysicalSensorProbe.OnEventListener onEventListener;
     private final int dataDimensionality;
+    private final SensorSamples sensorSamples;
+
     private final SensorEventListener listener = new SensorEventListener() {
 
         @Override
@@ -30,10 +32,13 @@ public class OnEventSensorMonitor {
         }
     };
 
+    private final OnEventPhysicalSensorProbe.OnEventListener onEventListener;
+
     public OnEventSensorMonitor(Context context, OnEventPhysicalSensorProbe onEventPhysicalSensorProbe, OnEventPhysicalSensorProbe.OnEventListener onEventListener, Handler handler) {
-        dataDimensionality = onEventPhysicalSensorProbe.getDimensions();
-        sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        sensor = sensorManager.getDefaultSensor(onEventPhysicalSensorProbe.getSensorId());
+        this.sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+        this.sensor = sensorManager.getDefaultSensor(onEventPhysicalSensorProbe.getSensorId());
+        this.sensorSamples = new SensorSamples(onEventPhysicalSensorProbe.getDimensions());
+        this.dataDimensionality = onEventPhysicalSensorProbe.getDimensions();
 
         this.onEventListener = onEventListener;
         sensorManager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_FASTEST, handler);
@@ -41,6 +46,10 @@ public class OnEventSensorMonitor {
 
     public void unRegisterSensor() {
         sensorManager.unregisterListener(listener, sensor);
+    }
+
+    public SensorSamples getSensorSamples() {
+        return sensorSamples;
     }
 
 }

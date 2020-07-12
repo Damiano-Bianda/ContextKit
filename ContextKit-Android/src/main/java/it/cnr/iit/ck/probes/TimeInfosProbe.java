@@ -43,7 +43,7 @@ public class TimeInfosProbe extends ContinuousProbe{
     public void exec() {
         TimeInfosData timeInfosData = TimeInfosController.getTimeInfosData();
         logOnFile(true, timeInfosData);
-        post(timeInfosData);
+        setFeaturable(timeInfosData);
     }
 
 }

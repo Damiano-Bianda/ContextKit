@@ -53,7 +53,6 @@ import weka.core.SerializationHelper;
 public class CK {
 
     // https://developer.android.com/training/monitoring-device-state/doze-standby
-    // TODO rimettere a true
     public static final boolean IS_FREE_BATTERY_USAGE_DEBUG_VARIABLE = true;
 
     // to log multiloggable data also if it is empty
@@ -143,22 +142,4 @@ public class CK {
         return intent;
     }
 
-    public static void loadHeavyFile() throws Exception {
-        final String path = Environment.getExternalStorageDirectory() + File.separator + "askdemo" + File.separator + "heavy_test";
-        final Object read = SerializationHelper.read(path);
-    }
-
-    public static void testLibSVM(Context context) throws Exception {
-
-        String string = Utils.readTextFile(context.getResources().openRawResource(R.raw.weka_test));
-        StringReader datafile = new StringReader(string);
-
-        Instances dataset = new Instances(datafile);
-        dataset.setClassIndex(dataset.numAttributes() - 1);
-
-        LibSVM libSVM = new LibSVM();
-        libSVM.buildClassifier(dataset);
-        final double v = libSVM.classifyInstance(dataset.get(0));
-        Log.e("prediction", v + "");
-    }
 }

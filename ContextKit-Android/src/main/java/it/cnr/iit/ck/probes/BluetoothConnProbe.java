@@ -68,7 +68,7 @@ class BluetoothConnProbe extends OnEventProbe {
                         if(receivedProxies == btProfiles.length) {
                             BTDevices btDevices = new BTDevices(new ArrayList(connectedDevices));
                             logOnFile(true, btDevices);
-                            post(btDevices);
+                            setFeaturable(btDevices);
                         }
                     }
                 }
@@ -101,7 +101,7 @@ class BluetoothConnProbe extends OnEventProbe {
                 else
                     connectedDevices.remove(device);
                 BTDevices btDevices = new BTDevices(new ArrayList(connectedDevices));
-                post(btDevices);
+                setFeaturable(btDevices);
             }
         }
     };
@@ -115,20 +115,16 @@ class BluetoothConnProbe extends OnEventProbe {
         BluetoothAdapter defaultAdapter = BluetoothAdapter.getDefaultAdapter();
         for(int btProfile : btProfiles) {
             defaultAdapter.getProfileProxy(getContext(), initialServiceListener, btProfile);
-
-
         }
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
         intentFilter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
-
         getContext().registerReceiver(connectedDevicesReceiver, intentFilter, null, getHandler());
     }
 
     @Override
-    public void onFirstRun() {
-    }
+    public void onFirstRun() {}
 
     @Override
     void onStop() {

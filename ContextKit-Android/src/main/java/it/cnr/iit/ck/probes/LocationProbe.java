@@ -27,6 +27,10 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.grum.geocalc.Coordinate;
+import com.grum.geocalc.DegreeCoordinate;
+import com.grum.geocalc.EarthCalc;
+import com.grum.geocalc.Point;
 
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -88,13 +92,13 @@ public class LocationProbe extends ContinuousProbe {
         private void logAndPostData(LocationInfo locationInfo, LocationInfoEnriched locationInfoEnriched) {
             if (logCategoriesInLogFile && logCategoriesInFeatures) {
                 logOnFile(true, locationInfoEnriched);
-                post(locationInfoEnriched);
+                setFeaturable(locationInfoEnriched);
             } else if (logCategoriesInLogFile) {
                 logOnFile(true, locationInfoEnriched);
-                post(locationInfo);
+                setFeaturable(locationInfo);
             } else if (logCategoriesInFeatures) {
                 logOnFile(true, locationInfo);
-                post(locationInfoEnriched);
+                setFeaturable(locationInfoEnriched);
             }
         }
 
@@ -148,13 +152,12 @@ public class LocationProbe extends ContinuousProbe {
                 if (location != null) {
                     getHandler().post(
                         () -> {
-                            // If categories must be logged either in log or features, it is needed to do the request to retrieve categories
                             if (logCategoriesInLogFile || logCategoriesInFeatures) {
                                 venueController.getVenueByCoordinate(location, venueListener);
                             } else {
                                 LocationInfo locationInfo = new LocationInfo(location);
                                 logOnFile(true, locationInfo);
-                                post(locationInfo);
+                                setFeaturable(locationInfo);
                             }
                         }
                     );
@@ -170,4 +173,5 @@ public class LocationProbe extends ContinuousProbe {
     public void setLogCategoriesInLogFile(boolean logCategoriesInLogFile) {
         this.logCategoriesInLogFile = logCategoriesInLogFile;
     }
+
 }

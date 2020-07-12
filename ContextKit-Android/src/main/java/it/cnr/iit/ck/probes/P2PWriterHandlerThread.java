@@ -141,8 +141,8 @@ public class P2PWriterHandlerThread extends HandlerThread {
             BTDevices btDevices = new BTDevices(new ArrayList<>(data));
             //for (String rowsToLog: btDevices.getRowsToLog())
             //    Log.e("BTDevices", rowsToLog);
-            probe.post(btDevices);
             probe.logOnFile(true, btDevices);
+            probe.setFeaturable(btDevices);
             data.clear();
         }
     }

@@ -76,7 +76,7 @@ class AudioProbe extends ContinuousProbe {
 
         if(audioInfo != null){
             logOnFile(true, audioInfo);
-            post(audioInfo);
+            setFeaturable(audioInfo);
         }
     }
 }

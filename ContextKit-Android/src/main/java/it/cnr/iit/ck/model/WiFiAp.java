@@ -38,4 +38,8 @@ public class WiFiAp implements Loggable{
     public void setCapabilities(String capabilities) {
         this.capabilities = capabilities;
     }
+
+    public String getBSSID() {
+        return BSSID;
+    }
 }

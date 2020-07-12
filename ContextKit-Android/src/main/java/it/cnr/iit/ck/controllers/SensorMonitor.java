@@ -15,16 +15,17 @@ import it.cnr.iit.ck.probes.PhysicalSensorProbe;
 
 public class SensorMonitor {
 
-    private final Sensor sensor;
-    private final SensorSamples sensorSamples;
     private final SensorManager sensorManager;
+    private final Sensor sensor;
     private final int dataDimensionality;
+    private final SensorSampleEvent sensorSampleEvent;
+
     private final SensorEventListener listener = new SensorEventListener() {
 
         @Override
         public void onSensorChanged(SensorEvent event) {
             float[] values = Arrays.copyOf(event.values, dataDimensionality);
-            sensorSamples.newSample(values);
+            sensorSampleEvent.getSample(values);
         }
 
         @Override
@@ -32,21 +33,31 @@ public class SensorMonitor {
         }
     };
 
-    public SensorMonitor(Context context, PhysicalSensorProbe physicalSensorProbe, Handler handler) {
+    private SensorMonitor(int sensorId, int dataDimensionality, SensorSampleEvent sensorSampleEvent, Context context) {
         this.sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        this.sensor = sensorManager.getDefaultSensor(physicalSensorProbe.getSensorId());
-        this.sensorSamples = new SensorSamples(physicalSensorProbe.getDimensions(), physicalSensorProbe.getWindowSize());
-        this.dataDimensionality = physicalSensorProbe.getDimensions();
+        this.sensor = sensorManager.getDefaultSensor(sensorId);
+        this.dataDimensionality = dataDimensionality;
+        this.sensorSampleEvent = sensorSampleEvent;
+    }
 
-        sensorManager.registerListener(listener, sensor, physicalSensorProbe.getSamplingPeriodInMicroseconds(), handler);
+    public SensorMonitor(int sensorId, int dataDimensionality, int samplingPeriodInMicroseconds,
+                         SensorSampleEvent sensorSampleEvent, Context context, Handler handler) {
+        this(sensorId, dataDimensionality, sensorSampleEvent, context);
+        sensorManager.registerListener(listener, sensor, samplingPeriodInMicroseconds, handler);
+    }
+
+    public SensorMonitor(int sensorId, int dataDimensionality, SensorSampleEvent sensorSampleEvent,
+                         Context context, Handler handler) {
+        this(sensorId, dataDimensionality, sensorSampleEvent, context);
+        sensorManager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_FASTEST, handler);
     }
 
     public void unRegisterSensor() {
         sensorManager.unregisterListener(listener, sensor);
     }
 
-    public SensorSamples getSensorSamples() {
-        return sensorSamples;
+    public interface SensorSampleEvent{
+        void getSample(float[] values);
     }
 
 }

@@ -24,6 +24,9 @@ import android.os.Handler;
 import android.text.TextUtils;
 
 import java.io.File;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import it.cnr.iit.ck.CK;
 import it.cnr.iit.ck.commons.Utils;
@@ -47,8 +50,8 @@ public abstract class BaseProbe {
     String logFile;
     private Context context;
     private int startDelay;
-    private FeaturesWorker featuresWorker;
     private volatile Handler handler;
+    private Featurable featurable;
 
     public void setLogFile(String logFile){ this.logFile = logFile; }
 
@@ -98,28 +101,15 @@ public abstract class BaseProbe {
 
     public abstract boolean featuresData();
 
-    public void setFeaturesWorker(FeaturesWorker featuresWorker){
-        this.featuresWorker = featuresWorker;
+    protected synchronized void setFeaturable(Featurable featurable){
+        this.featurable = featurable;
     }
 
-    protected void postDefaultValues(Featurable featurable){
-        if(featuresWorker != null) {
-            FeatureMessage featureMessage = new FeatureMessage(this, featurable, System.currentTimeMillis(), true);
-            featuresWorker.post(featureMessage);
-        }
-    }
-
-    protected void postWithExpiration(Featurable featurable, long validityTime){
-        if(featuresWorker != null) {
-            FeatureMessage featureMessage = new FeatureMessage(this, featurable, System.currentTimeMillis(), validityTime);
-            featuresWorker.post(featureMessage);
-        }
-    }
-
-    protected void post(Featurable featurable){
-        if(featuresWorker != null) {
-            FeatureMessage featureMessage = new FeatureMessage(this, featurable, System.currentTimeMillis());
-            featuresWorker.post(featureMessage);
+    public synchronized List<Double> getFeatures(Context context){
+        if (featurable == null){
+            return Collections.nCopies(getFeaturesHeaders().length, Double.NaN);
+        } else {
+            return featurable.getFeatures(context);
         }
     }
 

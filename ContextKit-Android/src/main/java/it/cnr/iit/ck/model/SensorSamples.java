@@ -51,10 +51,10 @@ public class SensorSamples {
 
     public static final int MIN_ELEMENTS = 4;
 
-    private int maxElements;
+    private final int maxElements;
 
-    private DescriptiveStatistics[] dimensions;
-    private Float[] lastElements;
+    private final DescriptiveStatistics[] dimensions;
+    private final Float[] lastElements;
 
     /**
      * Create a new SensorSamples with constrained window

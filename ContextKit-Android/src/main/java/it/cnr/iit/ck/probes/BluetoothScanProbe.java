@@ -143,7 +143,7 @@ class BluetoothScanProbe extends ContinuousProbe {
 
         BTDevices btDevices = new BTDevices(new ArrayList(devices));
         logOnFile(true, btDevices);
-        post(btDevices);
+        setFeaturable(btDevices);
 
         devices = new HashSet<>();
         mBtAdapter.startDiscovery();
