@@ -7,6 +7,7 @@ import android.util.Log;
 import java.text.MessageFormat;
 
 import weka.classifiers.Classifier;
+import weka.classifiers.trees.J48;
 import weka.core.Attribute;
 import weka.core.DenseInstance;
 import weka.core.Instances;
@@ -37,12 +38,12 @@ public class WekaClassifier extends CKClassifier{
         protected void init() throws Exception {
             this.classifier = (Classifier) SerializationHelper.read(context.getResources().openRawResource(resourceId));
             this.datasetDataInfo = (Instances) SerializationHelper.read(context.getResources().openRawResource(datasetInfoId));
-            final int i = datasetDataInfo.numAttributes();
         }
+
 
         @Override
         Prediction handleDataClassification(double[] data) throws Exception {
-            final int numAttributes = datasetDataInfo.numAttributes();
+            final int numAttributes = datasetDataInfo.numAttributes() - 1; // rimuovo classe
             if (data.length == numAttributes) {
                 DenseInstance instance = new DenseInstance(numAttributes);
                 datasetDataInfo.add(instance);
@@ -61,6 +62,8 @@ public class WekaClassifier extends CKClassifier{
                         numAttributes, data.length));
             }
         }
+
+
     }
 
 }

@@ -59,6 +59,7 @@ class CKSetup {
     private static final String JSON_FEATURES_ACTIVE = "active";
     private static final String JSON_FEATURES_LOG_FILE = "logfile";
     private static final String JSON_FEATURES_TEST = "test";
+    private static final String JSON_FEATURES_DATASET = "dataset";
 
     private static final String JSON_PROBES = "probes";
     private static final String JSON_PROBE_NAME = "name";
@@ -99,6 +100,7 @@ class CKSetup {
     Integer zipperInterval;
     int featuresIntervalInSeconds;
     boolean featuresTest;
+    String featuresDataset;
 
     private CKSetup(){}
 
@@ -181,6 +183,7 @@ class CKSetup {
         skSetup.featuresLogfile = features.optString(JSON_FEATURES_LOG_FILE, null);
         skSetup.featuresIntervalInSeconds = features.optInt(JSON_FEATURES_INTERVAL, FeaturesWorker.POLL_TIMEOUT_MILLIS);
         skSetup.featuresTest = features.optBoolean(JSON_FEATURES_TEST, false);
+        skSetup.featuresDataset = features.optString(JSON_FEATURES_DATASET, null);
 
         if (!skSetup.featuresModuleActive && skSetup != null){
             Utils.logWarning( "Features module is deactived, no data will be logged in file " + skSetup.featuresLogfile);

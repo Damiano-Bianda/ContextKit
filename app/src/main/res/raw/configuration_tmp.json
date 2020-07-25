@@ -1,0 +1,17 @@
+{
+  "logPath" : "askdemo",
+  "classifiers": [
+    {
+      "raw_resource": "context_labeler_cart",
+      "dataset_info": "context_labeler_dataset_infos"
+    }
+  ],
+  "features" : {
+    "test" : true,
+    "dataset": "context_labeler_test_set",
+    "active" : true,
+    "logfile" : "dataset.csv",
+    "interval" : 1
+  },
+  "probes" : []
+}

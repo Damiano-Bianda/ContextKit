@@ -38,6 +38,8 @@ import java.util.List;
 import it.cnr.iit.R;
 import it.cnr.iit.ck.commons.Utils;
 import it.cnr.iit.ck.data_classification.CKClassifier;
+import it.cnr.iit.ck.features.FeatureRunner;
+import it.cnr.iit.ck.features.FeatureRunnerTest;
 import it.cnr.iit.ck.features.FeaturesWorker;
 import it.cnr.iit.ck.logs.FileChecker;
 import it.cnr.iit.ck.logs.FileLogger;
@@ -195,13 +197,18 @@ public abstract class CKManager extends Service {
             }
         }
 
-        if (featurableProbes.isEmpty()) {
-            Utils.logWarning(R.string.no_featurable_probes_warning_message, getApplicationContext());
+        Runnable runnable;
+        if (setup.featuresTest){
+            final String featuresDataset = setup.featuresDataset;
+            int datasetResourceId = getApplicationContext().getResources().getIdentifier(featuresDataset, "raw", getApplicationContext().getPackageName());
+            runnable = new FeatureRunnerTest(setup.classifiers, setup.featuresIntervalInSeconds, datasetResourceId, getApplicationContext());
         } else {
-            featuresWorker = new FeaturesWorker(setup.featuresTest, setup.classifiers, featurableProbes, setup.featuresLogfile,
-                    setup.featuresIntervalInSeconds, getApplicationContext());
-            featuresWorker.start();
+            runnable = new FeatureRunner(setup.classifiers, featurableProbes, setup.featuresIntervalInSeconds, setup.featuresLogfile, getApplicationContext());
         }
+
+        featuresWorker = new FeaturesWorker(runnable);
+        featuresWorker.start();
+
 
     }
 

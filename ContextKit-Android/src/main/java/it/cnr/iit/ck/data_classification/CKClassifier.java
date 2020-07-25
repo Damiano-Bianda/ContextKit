@@ -2,6 +2,7 @@ package it.cnr.iit.ck.data_classification;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -11,6 +12,7 @@ import android.util.Log;
 import java.util.Arrays;
 
 import it.cnr.iit.ck.data_processing.FeatureReceiver;
+import it.cnr.iit.ck.logs.FileLogger;
 
 public abstract class CKClassifier extends HandlerThread implements FeatureReceiver {
 
@@ -68,14 +70,32 @@ public abstract class CKClassifier extends HandlerThread implements FeatureRecei
                     }
 
                     Bundle bundle = msg.getData();
+                    final double[] doubleArray = bundle.getDoubleArray(DATA_KEY);
+
+                    i++;
                     try {
-                        final double[] doubleArray = bundle.getDoubleArray(DATA_KEY);
+                        //long start = System.currentTimeMillis();
+                        //long start = System.currentTimeMillis();
                         final Prediction prediction = handleDataClassification(doubleArray);
-                        //Log.e("prediction", prediction + "");
-                    } catch (Exception e) { e.printStackTrace(); }
+                        //long elapsed = System.currentTimeMillis() - start;
+
+                        //FileLogger.getInstance().store("classification_times.csv", elapsed + "," + prediction.getStringLabel(), false);
+                        /*
+                        i++;
+                        if (i % 100 == 0){
+                            Log.e("class times", "logged "  + i + " examples");
+                        }
+                        */
+                        //Log.w("predicted " + i, prediction.getStringLabel() );
+                    } catch (Exception e) {
+                        //e.printStackTrace();
+                        //Log.e("error " + i, e.getMessage());
+                    }
                     break;
             }
         }
+
+        int i = 0;
 
         protected abstract void init() throws Exception;
 

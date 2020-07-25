@@ -10,7 +10,7 @@
     "test" : false,
     "active" : true,
     "logfile" : "dataset.csv",
-    "interval" : 10
+    "interval" : 60
   },
   "probes" : [
     {
@@ -50,7 +50,7 @@
     },
     {
       "name" : "BLEP2PProximityProbe",
-      "interval" : 10,
+      "interval" : 120,
       "logFile" : "bluetooth_service_discovery.csv"
     },
     {
@@ -172,12 +172,12 @@
     },
     {
       "name" : "WiFiP2PProximityProbe",
-      "interval" : 10,
+      "interval" : 120,
       "logFile" : "wifi_p2p_service_discovery_probe.csv"
     },
     {
-      "name" : "WiFiProbe",
-      "interval" : 10,
+      "name" : "WiFiScanProbe",
+      "interval" : 120,
       "logFile" : "wifi_scans.csv"
     }
   ]
